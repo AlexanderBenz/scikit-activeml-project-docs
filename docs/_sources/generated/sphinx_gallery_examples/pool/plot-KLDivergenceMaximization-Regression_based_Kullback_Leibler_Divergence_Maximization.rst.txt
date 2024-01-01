@@ -320,42 +320,42 @@ Regression based Kullback Leibler Divergence Maximization
      </style>
 
      <div class="animation">
-       <img id="_anim_imgedf68b56fd0641f2897cb0e1c2af255c">
+       <img id="_anim_img62efdfa4df534c91bb683d17335fcba6">
        <div class="anim-controls">
-         <input id="_anim_slideredf68b56fd0641f2897cb0e1c2af255c" type="range" class="anim-slider"
+         <input id="_anim_slider62efdfa4df534c91bb683d17335fcba6" type="range" class="anim-slider"
                 name="points" min="0" max="1" step="1" value="0"
-                oninput="animedf68b56fd0641f2897cb0e1c2af255c.set_frame(parseInt(this.value));">
+                oninput="anim62efdfa4df534c91bb683d17335fcba6.set_frame(parseInt(this.value));">
          <div class="anim-buttons">
-           <button title="Decrease speed" aria-label="Decrease speed" onclick="animedf68b56fd0641f2897cb0e1c2af255c.slower()">
+           <button title="Decrease speed" aria-label="Decrease speed" onclick="anim62efdfa4df534c91bb683d17335fcba6.slower()">
                <i class="fa fa-minus"></i></button>
-           <button title="First frame" aria-label="First frame" onclick="animedf68b56fd0641f2897cb0e1c2af255c.first_frame()">
+           <button title="First frame" aria-label="First frame" onclick="anim62efdfa4df534c91bb683d17335fcba6.first_frame()">
              <i class="fa fa-fast-backward"></i></button>
-           <button title="Previous frame" aria-label="Previous frame" onclick="animedf68b56fd0641f2897cb0e1c2af255c.previous_frame()">
+           <button title="Previous frame" aria-label="Previous frame" onclick="anim62efdfa4df534c91bb683d17335fcba6.previous_frame()">
                <i class="fa fa-step-backward"></i></button>
-           <button title="Play backwards" aria-label="Play backwards" onclick="animedf68b56fd0641f2897cb0e1c2af255c.reverse_animation()">
+           <button title="Play backwards" aria-label="Play backwards" onclick="anim62efdfa4df534c91bb683d17335fcba6.reverse_animation()">
                <i class="fa fa-play fa-flip-horizontal"></i></button>
-           <button title="Pause" aria-label="Pause" onclick="animedf68b56fd0641f2897cb0e1c2af255c.pause_animation()">
+           <button title="Pause" aria-label="Pause" onclick="anim62efdfa4df534c91bb683d17335fcba6.pause_animation()">
                <i class="fa fa-pause"></i></button>
-           <button title="Play" aria-label="Play" onclick="animedf68b56fd0641f2897cb0e1c2af255c.play_animation()">
+           <button title="Play" aria-label="Play" onclick="anim62efdfa4df534c91bb683d17335fcba6.play_animation()">
                <i class="fa fa-play"></i></button>
-           <button title="Next frame" aria-label="Next frame" onclick="animedf68b56fd0641f2897cb0e1c2af255c.next_frame()">
+           <button title="Next frame" aria-label="Next frame" onclick="anim62efdfa4df534c91bb683d17335fcba6.next_frame()">
                <i class="fa fa-step-forward"></i></button>
-           <button title="Last frame" aria-label="Last frame" onclick="animedf68b56fd0641f2897cb0e1c2af255c.last_frame()">
+           <button title="Last frame" aria-label="Last frame" onclick="anim62efdfa4df534c91bb683d17335fcba6.last_frame()">
                <i class="fa fa-fast-forward"></i></button>
-           <button title="Increase speed" aria-label="Increase speed" onclick="animedf68b56fd0641f2897cb0e1c2af255c.faster()">
+           <button title="Increase speed" aria-label="Increase speed" onclick="anim62efdfa4df534c91bb683d17335fcba6.faster()">
                <i class="fa fa-plus"></i></button>
          </div>
-         <form title="Repetition mode" aria-label="Repetition mode" action="#n" name="_anim_loop_selectedf68b56fd0641f2897cb0e1c2af255c"
+         <form title="Repetition mode" aria-label="Repetition mode" action="#n" name="_anim_loop_select62efdfa4df534c91bb683d17335fcba6"
                class="anim-state">
-           <input type="radio" name="state" value="once" id="_anim_radio1_edf68b56fd0641f2897cb0e1c2af255c"
+           <input type="radio" name="state" value="once" id="_anim_radio1_62efdfa4df534c91bb683d17335fcba6"
                   >
-           <label for="_anim_radio1_edf68b56fd0641f2897cb0e1c2af255c">Once</label>
-           <input type="radio" name="state" value="loop" id="_anim_radio2_edf68b56fd0641f2897cb0e1c2af255c"
+           <label for="_anim_radio1_62efdfa4df534c91bb683d17335fcba6">Once</label>
+           <input type="radio" name="state" value="loop" id="_anim_radio2_62efdfa4df534c91bb683d17335fcba6"
                   checked>
-           <label for="_anim_radio2_edf68b56fd0641f2897cb0e1c2af255c">Loop</label>
-           <input type="radio" name="state" value="reflect" id="_anim_radio3_edf68b56fd0641f2897cb0e1c2af255c"
+           <label for="_anim_radio2_62efdfa4df534c91bb683d17335fcba6">Loop</label>
+           <input type="radio" name="state" value="reflect" id="_anim_radio3_62efdfa4df534c91bb683d17335fcba6"
                   >
-           <label for="_anim_radio3_edf68b56fd0641f2897cb0e1c2af255c">Reflect</label>
+           <label for="_anim_radio3_62efdfa4df534c91bb683d17335fcba6">Reflect</label>
          </form>
        </div>
      </div>
@@ -365,9 +365,9 @@ Regression based Kullback Leibler Divergence Maximization
        /* Instantiate the Animation class. */
        /* The IDs given should match those used in the template above. */
        (function() {
-         var img_id = "_anim_imgedf68b56fd0641f2897cb0e1c2af255c";
-         var slider_id = "_anim_slideredf68b56fd0641f2897cb0e1c2af255c";
-         var loop_select_id = "_anim_loop_selectedf68b56fd0641f2897cb0e1c2af255c";
+         var img_id = "_anim_img62efdfa4df534c91bb683d17335fcba6";
+         var slider_id = "_anim_slider62efdfa4df534c91bb683d17335fcba6";
+         var loop_select_id = "_anim_loop_select62efdfa4df534c91bb683d17335fcba6";
          var frames = new Array(2);
     
        frames[0] = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAnwAAAHeCAYAAAAB0dYuAAAAOXRFWHRTb2Z0d2FyZQBNYXRwbG90\
@@ -1307,7 +1307,7 @@ Regression based Kullback Leibler Divergence Maximization
          /* set a timeout to make sure all the above elements are created before
             the object is initialized. */
          setTimeout(function() {
-             animedf68b56fd0641f2897cb0e1c2af255c = new Animation(frames, img_id, slider_id, 1000.0,
+             anim62efdfa4df534c91bb683d17335fcba6 = new Animation(frames, img_id, slider_id, 1000.0,
                                       loop_select_id);
          }, 0);
        })()
@@ -1333,7 +1333,7 @@ The implementation of this strategy is based on :footcite:t:`elreedy2019novel`.
 
 .. rst-class:: sphx-glr-timing
 
-   **Total running time of the script:** (0 minutes 1.544 seconds)
+   **Total running time of the script:** (0 minutes 1.535 seconds)
 
 
 .. _sphx_glr_download_generated_sphinx_gallery_examples_pool_plot-KLDivergenceMaximization-Regression_based_Kullback_Leibler_Divergence_Maximization.py:
