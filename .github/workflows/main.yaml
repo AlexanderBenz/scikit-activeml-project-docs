@@ -28,8 +28,8 @@ jobs:
         run: |
           sudo apt-get install pandoc
           python -m pip install --upgrade pip
-          pip install -r scikit-activeml/requirements.txt
-          pip install -r scikit-activeml/requirements_extra.txt
+          pip install -r scikit-activeml-project/requirements.txt
+          pip install -r scikit-activeml-project/requirements_extra.txt
       - name: Create documentation with sphinx
         env:
           N_SAMPLES: 10
@@ -37,10 +37,10 @@ jobs:
           RES: 3
           FULLEXAMPLES: False
         run: |
-          sphinx-build -b html scikit-activeml/docs scikit-activeml/docs/_build
+          sphinx-build -b html scikit-activeml-project/docs scikit-activeml-project/docs/_build
       - name: Deploy documentation to Github Pages
         uses: JamesIves/github-pages-deploy-action@4.1.5
         with:
           branch: gh-pages
-          folder: scikit-activeml/docs/_build
+          folder: scikit-activeml-project/docs/_build
           target-folder: latest
