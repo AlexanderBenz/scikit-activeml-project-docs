@@ -44,3 +44,22 @@ jobs:
           branch: gh-pages
           folder: scikit-activeml-project/docs/_build
           target-folder: docs
+
+# on:
+#   repository_dispatch:
+#     types: [release]
+
+# jobs:
+#   build:
+
+#     runs-on: ubuntu-latest
+#     strategy:
+#       matrix:
+#         python-version: [3.9]
+
+#     steps:
+#       - uses: actions/checkout@v4
+#       - name: Move Version Folder
+#         run: |
+#           mkdir $RELEASE_VERSION
+#           mv /docs/* $RELEASE_VERSION/
