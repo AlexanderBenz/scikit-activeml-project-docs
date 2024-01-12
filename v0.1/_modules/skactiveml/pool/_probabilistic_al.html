@@ -5,7 +5,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>skactiveml.pool._probabilistic_al &#8212; scikit-activeml latest documentation</title>
+    <title>skactiveml.pool._probabilistic_al &#8212; scikit-activeml test documentation</title>
 <script>
   document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
   document.documentElement.dataset.theme = localStorage.getItem("theme") || "light"
@@ -71,6 +71,86 @@
   
   
 </a>
+    
+    <div class="dropdown" id="version_switcher">
+    <button type="button" class="btn btn-sm navbar-btn dropdown-toggle" id="version_switcher_button" data-toggle="dropdown">
+        test  <!-- this text may get changed later by javascript -->
+        <span class="caret"></span>
+    </button>
+    <div id="version_switcher_menu" class="dropdown-menu list-group-flush py-0" aria-labelledby="version_switcher_button">
+    <!-- dropdown will be populated by javascript on page load -->
+    </div>
+</div>
+
+<!-- NOTE: this JS must live here (not in our global JS file) because it relies
+     on being processed by Jinja before it is run (specifically for replacing
+     variables _modules/skactiveml/pool/_probabilistic_al and {'json_url': 'https://github.com/AlexanderBenz/scikit-activeml-project/blob/versioning-of-docs/docs/switcher.json', 'version_match': 'test'}.
+-->
+
+<script type="text/javascript">
+// Check if corresponding page path exists in other version of docs
+// and, if so, go there instead of the homepage of the other docs version
+function checkPageExistsAndRedirect(event) {
+    const currentFilePath = "_modules/skactiveml/pool/_probabilistic_al.html",
+          tryUrl = event.target.getAttribute("href");
+    let otherDocsHomepage = tryUrl.replace(currentFilePath, "");
+    $.ajax({
+        type: 'HEAD',
+        url: tryUrl,
+        // if the page exists, go there
+        success: function() {
+            location.href = tryUrl;
+        }
+    }).fail(function() {
+        location.href = otherDocsHomepage;
+    });
+    // this prevents the browser from following the href of the clicked node
+    // (which is fine because this function takes care of redirecting)
+    return false;
+}
+
+// Populate the version switcher from the JSON config file
+(function () {
+    $.getJSON("https://github.com/AlexanderBenz/scikit-activeml-project/blob/versioning-of-docs/docs/switcher.json", function(data, textStatus, jqXHR) {
+        const currentFilePath = "_modules/skactiveml/pool/_probabilistic_al.html";
+        let btn = document.getElementById("version_switcher_button");
+        // Set empty strings by default so that these attributes exist and can be used in CSS selectors
+        btn.dataset["activeVersionName"] = "";
+        btn.dataset["activeVersion"] = "";
+        // create links to the corresponding page in the other docs versions
+        $.each(data, function(index, entry) {
+            // if no custom name specified (e.g., "latest"), use version string
+            if (!("name" in entry)) {
+                entry.name = entry.version;
+            }
+            // create the node
+            const node = document.createElement("a");
+            node.setAttribute("class", "list-group-item list-group-item-action py-1");
+            node.textContent = `${entry.name}`;
+            node.setAttribute("href", `${entry.url}${currentFilePath}`);
+            // on click, AJAX calls will check if the linked page exists before
+            // trying to redirect, and if not, will redirect to the homepage
+            // for that version of the docs.
+            node.onclick = checkPageExistsAndRedirect;
+            // Add dataset values for the version and name in case people want
+            // to apply CSS styling based on this information.
+            node.dataset["versionName"] = entry.name;
+            node.dataset["version"] = entry.version;
+
+            $("#version_switcher_menu").append(node);
+            // replace dropdown button text with the preferred display name of
+            // this version, rather than using sphinx's test variable.
+            // also highlight the dropdown entry for the currently-viewed
+            // version's entry
+            if (entry.version == "test") {
+                node.classList.add("active");
+                btn.innerText = btn.dataset["activeVersionName"] = entry.name;
+                btn.dataset["activeVersion"] = entry.version;
+            }
+        });
+    });
+})();
+</script>
     
   </div>
 
@@ -210,7 +290,7 @@
 
 
 <div class="viewcode-block" id="ProbabilisticAL"><a class="viewcode-back" href="../../../generated/api/skactiveml.pool.ProbabilisticAL.html#skactiveml.pool.ProbabilisticAL">[docs]</a><span class="k">class</span> <span class="nc">ProbabilisticAL</span><span class="p">(</span><span class="n">SingleAnnotatorPoolQueryStrategy</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;(Multi-class) Probabilistic Active Learning</span>
+    <span class="sd">&quot;&quot;&quot;(Multi-class) Probabilistic Active Learning</span>
 
 <span class="sd">    This class implements multi-class probabilistic active learning (McPAL) [1]</span>
 <span class="sd">    strategy.</span>
@@ -275,7 +355,7 @@
         <span class="n">batch_size</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
         <span class="n">return_utilities</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
     <span class="p">):</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;Query the next instance to be labeled.</span>
+        <span class="sd">&quot;&quot;&quot;Query the next instance to be labeled.</span>
 
 <span class="sd">        Parameters</span>
 <span class="sd">        ----------</span>
@@ -401,7 +481,7 @@
 
 
 <div class="viewcode-block" id="cost_reduction"><a class="viewcode-back" href="../../../generated/api/skactiveml.pool.cost_reduction.html#skactiveml.pool.cost_reduction">[docs]</a><span class="k">def</span> <span class="nf">cost_reduction</span><span class="p">(</span><span class="n">k_vec_list</span><span class="p">,</span> <span class="n">C</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">m_max</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">prior</span><span class="o">=</span><span class="mf">1.0e-3</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;Calculate the expected cost reduction.</span>
+    <span class="sd">&quot;&quot;&quot;Calculate the expected cost reduction.</span>
 
 <span class="sd">    Calculate the expected cost reduction for given maximum number of</span>
 <span class="sd">    hypothetically acquired labels, observed labels and cost matrix.</span>
@@ -491,7 +571,7 @@
 
 
 <span class="k">def</span> <span class="nf">_gen_l_vec_list</span><span class="p">(</span><span class="n">m_approx</span><span class="p">,</span> <span class="n">n_classes</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+    <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Creates all possible class labeling vectors for given number of</span>
 <span class="sd">    hypothetically acquired labels and given number of classes.</span>
 
@@ -528,7 +608,7 @@
 
 
 <span class="k">def</span> <span class="nf">_euler_beta</span><span class="p">(</span><span class="n">a</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+    <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Represents Euler beta function:</span>
 <span class="sd">    B(a(i)) = Gamma(a(i,1))*...*Gamma(a_n)/Gamma(a(i,1)+...+a(i,n))</span>
 
@@ -546,7 +626,7 @@
 
 
 <span class="k">def</span> <span class="nf">_multinomial</span><span class="p">(</span><span class="n">a</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+    <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Computes Multinomial coefficient:</span>
 <span class="sd">    Mult(a(i)) = (a(i,1)+...+a(i,n))!/(a(i,1)!...a(i,n)!)</span>
 

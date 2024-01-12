@@ -6,7 +6,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
-    <title>Developer Guide &#8212; scikit-activeml latest documentation</title>
+    <title>Developer Guide &#8212; scikit-activeml test documentation</title>
 <script>
   document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
   document.documentElement.dataset.theme = localStorage.getItem("theme") || "light"
@@ -42,7 +42,7 @@
     <script src="_static/filter_examples.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="prev" title="Probabilistic Active Learning in Datastreams" href="generated/sphinx_gallery_examples/stream/plot-StreamProbabilisticAL-Probabilistic_Active_Learning_in_Datastreams.html" />
+    <link rel="prev" title="Examples" href="generated/sphinx_gallery_examples/index.html" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <meta name="docsearch:language" content="None">
   </head>
@@ -73,6 +73,86 @@
   
   
 </a>
+    
+    <div class="dropdown" id="version_switcher">
+    <button type="button" class="btn btn-sm navbar-btn dropdown-toggle" id="version_switcher_button" data-toggle="dropdown">
+        test  <!-- this text may get changed later by javascript -->
+        <span class="caret"></span>
+    </button>
+    <div id="version_switcher_menu" class="dropdown-menu list-group-flush py-0" aria-labelledby="version_switcher_button">
+    <!-- dropdown will be populated by javascript on page load -->
+    </div>
+</div>
+
+<!-- NOTE: this JS must live here (not in our global JS file) because it relies
+     on being processed by Jinja before it is run (specifically for replacing
+     variables developers_guide and {'json_url': 'https://github.com/AlexanderBenz/scikit-activeml-project/blob/versioning-of-docs/docs/switcher.json', 'version_match': 'test'}.
+-->
+
+<script type="text/javascript">
+// Check if corresponding page path exists in other version of docs
+// and, if so, go there instead of the homepage of the other docs version
+function checkPageExistsAndRedirect(event) {
+    const currentFilePath = "developers_guide.html",
+          tryUrl = event.target.getAttribute("href");
+    let otherDocsHomepage = tryUrl.replace(currentFilePath, "");
+    $.ajax({
+        type: 'HEAD',
+        url: tryUrl,
+        // if the page exists, go there
+        success: function() {
+            location.href = tryUrl;
+        }
+    }).fail(function() {
+        location.href = otherDocsHomepage;
+    });
+    // this prevents the browser from following the href of the clicked node
+    // (which is fine because this function takes care of redirecting)
+    return false;
+}
+
+// Populate the version switcher from the JSON config file
+(function () {
+    $.getJSON("https://github.com/AlexanderBenz/scikit-activeml-project/blob/versioning-of-docs/docs/switcher.json", function(data, textStatus, jqXHR) {
+        const currentFilePath = "developers_guide.html";
+        let btn = document.getElementById("version_switcher_button");
+        // Set empty strings by default so that these attributes exist and can be used in CSS selectors
+        btn.dataset["activeVersionName"] = "";
+        btn.dataset["activeVersion"] = "";
+        // create links to the corresponding page in the other docs versions
+        $.each(data, function(index, entry) {
+            // if no custom name specified (e.g., "latest"), use version string
+            if (!("name" in entry)) {
+                entry.name = entry.version;
+            }
+            // create the node
+            const node = document.createElement("a");
+            node.setAttribute("class", "list-group-item list-group-item-action py-1");
+            node.textContent = `${entry.name}`;
+            node.setAttribute("href", `${entry.url}${currentFilePath}`);
+            // on click, AJAX calls will check if the linked page exists before
+            // trying to redirect, and if not, will redirect to the homepage
+            // for that version of the docs.
+            node.onclick = checkPageExistsAndRedirect;
+            // Add dataset values for the version and name in case people want
+            // to apply CSS styling based on this information.
+            node.dataset["versionName"] = entry.name;
+            node.dataset["version"] = entry.version;
+
+            $("#version_switcher_menu").append(node);
+            // replace dropdown button text with the preferred display name of
+            // this version, rather than using sphinx's test variable.
+            // also highlight the dropdown entry for the currently-viewed
+            // version's entry
+            if (entry.version == "test") {
+                node.classList.add("active");
+                btn.innerText = btn.dataset["activeVersionName"] = entry.name;
+                btn.dataset["activeVersion"] = entry.version;
+            }
+        });
+    });
+})();
+</script>
     
   </div>
 
@@ -750,15 +830,15 @@ Python environment.</p>
 <section id="example-with-miniconda">
 <h4>Example With miniconda<a class="headerlink" href="#example-with-miniconda" title="Permalink to this headline">#</a></h4>
 <p>Create a new Python environment named <strong>scikit-activeml</strong>:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>conda<span class="w"> </span>create<span class="w"> </span>-n<span class="w"> </span>scikit-activeml
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>conda create -n scikit-activeml
 </pre></div>
 </div>
 <p>To be sure that the correct environment is active:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>conda<span class="w"> </span>activate<span class="w"> </span>scikit-activeml
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>conda activate scikit-activeml
 </pre></div>
 </div>
 <p>Then install <code class="docutils literal notranslate"><span class="pre">pip</span></code>:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>conda<span class="w"> </span>install<span class="w"> </span>pip
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>conda install pip
 </pre></div>
 </div>
 </section>
@@ -769,16 +849,16 @@ Python environment.</p>
 in the <code class="docutils literal notranslate"><span class="pre">requirements.txt</span></code> and <code class="docutils literal notranslate"><span class="pre">requirements_extra.txt</span></code> (for development)
 files.</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Make sure your scikit-activeml python environment is active!</span>
-<span class="nb">cd</span><span class="w"> </span>&lt;project-root&gt;
-pip<span class="w"> </span>install<span class="w"> </span>-r<span class="w"> </span>requirements.txt
-pip<span class="w"> </span>install<span class="w"> </span>-r<span class="w"> </span>requirements_extra.txt
+<span class="nb">cd</span> &lt;project-root&gt;
+pip install -r requirements.txt
+pip install -r requirements_extra.txt
 </pre></div>
 </div>
 <p>After the pip installation was successful, we have to install <code class="docutils literal notranslate"><span class="pre">pandoc</span></code>
 and <code class="docutils literal notranslate"><span class="pre">ghostscript</span></code> if it is not already installed.</p>
 <section id="example-with-macos-homebrew">
 <h4>Example with MacOS (Homebrew)<a class="headerlink" href="#example-with-macos-homebrew" title="Permalink to this headline">#</a></h4>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>brew<span class="w"> </span>install<span class="w"> </span>pandoc<span class="w"> </span>ghostscript
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>brew install pandoc ghostscript
 </pre></div>
 </div>
 </section>
@@ -797,8 +877,8 @@ Code. For linting, the use of
 package <a class="reference external" href="https://black.readthedocs.io/en/stable/">black</a> provides a simple
 solution for this formatting. Concretely, you can install it and format
 the code via the following commands:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pip<span class="w"> </span>install<span class="w"> </span>black
-black<span class="w"> </span>--line-length<span class="w"> </span><span class="m">79</span><span class="w"> </span>example_file.py
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pip install black
+black --line-length <span class="m">79</span> example_file.py
 </pre></div>
 </div>
 </section>
@@ -809,32 +889,32 @@ button.</p>
 <ol class="arabic simple" start="2">
 <li><p>Then, clone your fork to your local machine:</p></li>
 </ol>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git<span class="w"> </span>clone<span class="w"> </span>https://github.com/&lt;your-username&gt;/scikit-activeml.git
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git clone https://github.com/&lt;your-username&gt;/scikit-activeml.git
 </pre></div>
 </div>
 <ol class="arabic simple" start="3">
 <li><p>Create a new branch for your changes from the <code class="docutils literal notranslate"><span class="pre">development</span></code> branch:</p></li>
 </ol>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git<span class="w"> </span>checkout<span class="w"> </span>-b<span class="w"> </span>&lt;branch-name&gt;
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git checkout -b &lt;branch-name&gt;
 </pre></div>
 </div>
 <ol class="arabic simple" start="4">
 <li><p>After you have finished implementing the feature, make sure that all
 the tests pass. The tests can be run as</p></li>
 </ol>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>pytest
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ pytest
 </pre></div>
 </div>
 <p>Make sure, you covered all lines by tests.</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>pytest<span class="w"> </span>--cov<span class="o">=</span>./skactiveml
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ pytest --cov<span class="o">=</span>./skactiveml
 </pre></div>
 </div>
 <ol class="arabic simple" start="5">
 <li><p>Commit and push the changes.</p></li>
 </ol>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>git<span class="w"> </span>add<span class="w"> </span>&lt;modified-files&gt;
-$<span class="w"> </span>git<span class="w"> </span>commit<span class="w"> </span>-m<span class="w"> </span><span class="s2">&quot;&lt;commit-message&gt;&quot;</span>
-$<span class="w"> </span>git<span class="w"> </span>push
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ git add &lt;modified-files&gt;
+$ git commit -m <span class="s2">&quot;&lt;commit-message&gt;&quot;</span>
+$ git push
 </pre></div>
 </div>
 <ol class="arabic simple" start="6">
@@ -2268,7 +2348,7 @@ for writing the documentation are adopted from
 <h3>Building the documentation<a class="headerlink" href="#building-the-documentation" title="Permalink to this headline">#</a></h3>
 <p>To ensure the documentation of your work is well formatted, build the sphinx
 documentation by executing the following line.</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sphinx-build<span class="w"> </span>-b<span class="w"> </span>html<span class="w"> </span>docs<span class="w"> </span>docs/_build
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sphinx-build -b html docs docs/_build
 </pre></div>
 </div>
 </section>
@@ -2336,11 +2416,11 @@ label) using the search box on the top of the issue tracker page.</p>
               <footer class="bd-footer-article">
                   <!-- Previous / next buttons -->
 <div class='prev-next-area'>
-  <a class='left-prev' id="prev-link" href="generated/sphinx_gallery_examples/stream/plot-StreamProbabilisticAL-Probabilistic_Active_Learning_in_Datastreams.html" title="previous page">
+  <a class='left-prev' id="prev-link" href="generated/sphinx_gallery_examples/index.html" title="previous page">
       <i class="fas fa-angle-left"></i>
       <div class="prev-next-info">
           <p class="prev-next-subtitle">previous</p>
-          <p class="prev-next-title">Probabilistic Active Learning in Datastreams</p>
+          <p class="prev-next-title">Examples</p>
       </div>
   </a>
 </div>

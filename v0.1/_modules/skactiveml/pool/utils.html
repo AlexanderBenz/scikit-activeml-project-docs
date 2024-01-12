@@ -5,7 +5,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>skactiveml.pool.utils &#8212; scikit-activeml latest documentation</title>
+    <title>skactiveml.pool.utils &#8212; scikit-activeml test documentation</title>
 <script>
   document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
   document.documentElement.dataset.theme = localStorage.getItem("theme") || "light"
@@ -71,6 +71,86 @@
   
   
 </a>
+    
+    <div class="dropdown" id="version_switcher">
+    <button type="button" class="btn btn-sm navbar-btn dropdown-toggle" id="version_switcher_button" data-toggle="dropdown">
+        test  <!-- this text may get changed later by javascript -->
+        <span class="caret"></span>
+    </button>
+    <div id="version_switcher_menu" class="dropdown-menu list-group-flush py-0" aria-labelledby="version_switcher_button">
+    <!-- dropdown will be populated by javascript on page load -->
+    </div>
+</div>
+
+<!-- NOTE: this JS must live here (not in our global JS file) because it relies
+     on being processed by Jinja before it is run (specifically for replacing
+     variables _modules/skactiveml/pool/utils and {'json_url': 'https://github.com/AlexanderBenz/scikit-activeml-project/blob/versioning-of-docs/docs/switcher.json', 'version_match': 'test'}.
+-->
+
+<script type="text/javascript">
+// Check if corresponding page path exists in other version of docs
+// and, if so, go there instead of the homepage of the other docs version
+function checkPageExistsAndRedirect(event) {
+    const currentFilePath = "_modules/skactiveml/pool/utils.html",
+          tryUrl = event.target.getAttribute("href");
+    let otherDocsHomepage = tryUrl.replace(currentFilePath, "");
+    $.ajax({
+        type: 'HEAD',
+        url: tryUrl,
+        // if the page exists, go there
+        success: function() {
+            location.href = tryUrl;
+        }
+    }).fail(function() {
+        location.href = otherDocsHomepage;
+    });
+    // this prevents the browser from following the href of the clicked node
+    // (which is fine because this function takes care of redirecting)
+    return false;
+}
+
+// Populate the version switcher from the JSON config file
+(function () {
+    $.getJSON("https://github.com/AlexanderBenz/scikit-activeml-project/blob/versioning-of-docs/docs/switcher.json", function(data, textStatus, jqXHR) {
+        const currentFilePath = "_modules/skactiveml/pool/utils.html";
+        let btn = document.getElementById("version_switcher_button");
+        // Set empty strings by default so that these attributes exist and can be used in CSS selectors
+        btn.dataset["activeVersionName"] = "";
+        btn.dataset["activeVersion"] = "";
+        // create links to the corresponding page in the other docs versions
+        $.each(data, function(index, entry) {
+            // if no custom name specified (e.g., "latest"), use version string
+            if (!("name" in entry)) {
+                entry.name = entry.version;
+            }
+            // create the node
+            const node = document.createElement("a");
+            node.setAttribute("class", "list-group-item list-group-item-action py-1");
+            node.textContent = `${entry.name}`;
+            node.setAttribute("href", `${entry.url}${currentFilePath}`);
+            // on click, AJAX calls will check if the linked page exists before
+            // trying to redirect, and if not, will redirect to the homepage
+            // for that version of the docs.
+            node.onclick = checkPageExistsAndRedirect;
+            // Add dataset values for the version and name in case people want
+            // to apply CSS styling based on this information.
+            node.dataset["versionName"] = entry.name;
+            node.dataset["version"] = entry.version;
+
+            $("#version_switcher_menu").append(node);
+            // replace dropdown button text with the preferred display name of
+            // this version, rather than using sphinx's test variable.
+            // also highlight the dropdown entry for the currently-viewed
+            // version's entry
+            if (entry.version == "test") {
+                node.classList.add("active");
+                btn.innerText = btn.dataset["activeVersionName"] = entry.name;
+                btn.dataset["activeVersion"] = entry.version;
+            }
+        });
+    });
+})();
+</script>
     
   </div>
 
@@ -227,7 +307,7 @@
 
 
 <div class="viewcode-block" id="IndexClassifierWrapper"><a class="viewcode-back" href="../../../generated/api/skactiveml.pool.utils.IndexClassifierWrapper.html#skactiveml.pool.utils.IndexClassifierWrapper">[docs]</a><span class="k">class</span> <span class="nc">IndexClassifierWrapper</span><span class="p">:</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+    <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Classifier to simplify retraining classifiers in an active learning</span>
 <span class="sd">    scenario. The idea is to pass all instances at once and use their indices</span>
 <span class="sd">    to access them. Thereby, optimization is possible e.g. by pre-computing</span>
@@ -364,7 +444,7 @@
 <div class="viewcode-block" id="IndexClassifierWrapper.precompute"><a class="viewcode-back" href="../../../generated/api/skactiveml.pool.utils.IndexClassifierWrapper.html#skactiveml.pool.utils.IndexClassifierWrapper.precompute">[docs]</a>    <span class="k">def</span> <span class="nf">precompute</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span> <span class="n">idx_fit</span><span class="p">,</span> <span class="n">idx_pred</span><span class="p">,</span> <span class="n">fit_params</span><span class="o">=</span><span class="s2">&quot;all&quot;</span><span class="p">,</span> <span class="n">pred_params</span><span class="o">=</span><span class="s2">&quot;all&quot;</span>
     <span class="p">):</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+        <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Function to describe for which samples we should precompute something.</span>
 <span class="sd">        Will be internally handled differently for different classifiers. The</span>
 <span class="sd">        function consists of pairs of `idx_fit` and `idx_predict` to describe</span>
@@ -440,7 +520,7 @@
                 <span class="p">)</span></div>
 
 <div class="viewcode-block" id="IndexClassifierWrapper.fit"><a class="viewcode-back" href="../../../generated/api/skactiveml.pool.utils.IndexClassifierWrapper.html#skactiveml.pool.utils.IndexClassifierWrapper.fit">[docs]</a>    <span class="k">def</span> <span class="nf">fit</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">idx</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">sample_weight</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">set_base_clf</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;Fit the model using `self.X[idx]` as training data and `self.y[idx]`</span>
+        <span class="sd">&quot;&quot;&quot;Fit the model using `self.X[idx]` as training data and `self.y[idx]`</span>
 <span class="sd">        as class labels.</span>
 
 <span class="sd">        Parameters</span>
@@ -532,7 +612,7 @@
         <span class="n">use_base_clf</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
         <span class="n">set_base_clf</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
     <span class="p">):</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;Update the fitted model using additional samples in `self.X[idx]`</span>
+        <span class="sd">&quot;&quot;&quot;Update the fitted model using additional samples in `self.X[idx]`</span>
 <span class="sd">        and y as class labels.</span>
 
 <span class="sd">        Parameters</span>
@@ -661,7 +741,7 @@
         <span class="k">return</span> <span class="bp">self</span></div>
 
 <div class="viewcode-block" id="IndexClassifierWrapper.predict"><a class="viewcode-back" href="../../../generated/api/skactiveml.pool.utils.IndexClassifierWrapper.html#skactiveml.pool.utils.IndexClassifierWrapper.predict">[docs]</a>    <span class="k">def</span> <span class="nf">predict</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">idx</span><span class="p">):</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;Return class label predictions for the input data `X[idx]`.</span>
+        <span class="sd">&quot;&quot;&quot;Return class label predictions for the input data `X[idx]`.</span>
 
 <span class="sd">        Parameters</span>
 <span class="sd">        ----------</span>
@@ -694,7 +774,7 @@
             <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">clf_</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">X</span><span class="p">[</span><span class="n">idx</span><span class="p">])</span></div>
 
 <div class="viewcode-block" id="IndexClassifierWrapper.predict_proba"><a class="viewcode-back" href="../../../generated/api/skactiveml.pool.utils.IndexClassifierWrapper.html#skactiveml.pool.utils.IndexClassifierWrapper.predict_proba">[docs]</a>    <span class="k">def</span> <span class="nf">predict_proba</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">idx</span><span class="p">):</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;Return probability estimates for the input data `X[idx]`.</span>
+        <span class="sd">&quot;&quot;&quot;Return probability estimates for the input data `X[idx]`.</span>
 
 <span class="sd">        Parameters</span>
 <span class="sd">        ----------</span>
@@ -728,7 +808,7 @@
             <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">clf_</span><span class="o">.</span><span class="n">predict_proba</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">X</span><span class="p">[</span><span class="n">idx</span><span class="p">])</span></div>
 
 <div class="viewcode-block" id="IndexClassifierWrapper.predict_freq"><a class="viewcode-back" href="../../../generated/api/skactiveml.pool.utils.IndexClassifierWrapper.html#skactiveml.pool.utils.IndexClassifierWrapper.predict_freq">[docs]</a>    <span class="k">def</span> <span class="nf">predict_freq</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">idx</span><span class="p">):</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;Return class frequency estimates for the input samples &#39;X[idx]&#39;.</span>
+        <span class="sd">&quot;&quot;&quot;Return class frequency estimates for the input samples &#39;X[idx]&#39;.</span>
 
 <span class="sd">        Parameters</span>
 <span class="sd">        ----------</span>
@@ -762,7 +842,7 @@
             <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">clf_</span><span class="o">.</span><span class="n">predict_freq</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">X</span><span class="p">[</span><span class="n">idx</span><span class="p">])</span></div>
 
 <div class="viewcode-block" id="IndexClassifierWrapper.is_fitted"><a class="viewcode-back" href="../../../generated/api/skactiveml.pool.utils.IndexClassifierWrapper.html#skactiveml.pool.utils.IndexClassifierWrapper.is_fitted">[docs]</a>    <span class="k">def</span> <span class="nf">is_fitted</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">base_clf</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;Returns if the classifier (resp. the base classifier) is fitted.</span>
+        <span class="sd">&quot;&quot;&quot;Returns if the classifier (resp. the base classifier) is fitted.</span>
 
 <span class="sd">        Parameters</span>
 <span class="sd">        ----------</span>
@@ -813,7 +893,7 @@
 <span class="k">def</span> <span class="nf">_cross_entropy</span><span class="p">(</span>
     <span class="n">X_eval</span><span class="p">,</span> <span class="n">true_reg</span><span class="p">,</span> <span class="n">other_reg</span><span class="p">,</span> <span class="n">integration_dict</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="kc">None</span>
 <span class="p">):</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;Calculates the cross entropy.</span>
+    <span class="sd">&quot;&quot;&quot;Calculates the cross entropy.</span>
 
 <span class="sd">    Parameters</span>
 <span class="sd">    ----------</span>
@@ -869,7 +949,7 @@
     <span class="n">X_update</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
     <span class="n">mapping</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
 <span class="p">):</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;Update the regressor by the updating samples, depending on</span>
+    <span class="sd">&quot;&quot;&quot;Update the regressor by the updating samples, depending on</span>
 <span class="sd">    the mapping. Chooses `X_update` if `mapping is None` and updates</span>
 <span class="sd">    `X[mapping[idx_update]]` otherwise.</span>
 
@@ -921,7 +1001,7 @@
 
 
 <span class="k">def</span> <span class="nf">_update_X_y</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">y_update</span><span class="p">,</span> <span class="n">idx_update</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">X_update</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;Update the training data by the updating samples/labels.</span>
+    <span class="sd">&quot;&quot;&quot;Update the training data by the updating samples/labels.</span>
 
 <span class="sd">    Parameters</span>
 <span class="sd">    ----------</span>
@@ -989,7 +1069,7 @@
 
 
 <span class="k">def</span> <span class="nf">_reshape_scipy_dist</span><span class="p">(</span><span class="n">dist</span><span class="p">,</span> <span class="n">shape</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;Reshapes the parameters &quot;loc&quot;, &quot;scale&quot;, &quot;df&quot; of a distribution, if they</span>
+    <span class="sd">&quot;&quot;&quot;Reshapes the parameters &quot;loc&quot;, &quot;scale&quot;, &quot;df&quot; of a distribution, if they</span>
 <span class="sd">    exist.</span>
 
 <span class="sd">    Parameters</span>
@@ -1018,7 +1098,7 @@
 
 
 <span class="k">def</span> <span class="nf">expected_target_val</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">target_func</span><span class="p">,</span> <span class="n">reg</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;Calculates the conditional expectation of a function depending only on</span>
+    <span class="sd">&quot;&quot;&quot;Calculates the conditional expectation of a function depending only on</span>
 <span class="sd">    the target value for each sample in `X`, i.e.</span>
 <span class="sd">    E[target_func(Y)|X=x], where Y | X=x ~ reg.predict_target_distribution,</span>
 <span class="sd">    for x in `X`.</span>
@@ -1107,7 +1187,7 @@
     <span class="n">random_state</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
     <span class="n">vector_func</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
 <span class="p">):</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;Calculates the conditional expectation of a function depending on the</span>
+    <span class="sd">&quot;&quot;&quot;Calculates the conditional expectation of a function depending on the</span>
 <span class="sd">    target value the corresponding feature value and an index for each sample</span>
 <span class="sd">    in `X`, i.e. E[func(Y, x, idx)|X=x], where</span>
 <span class="sd">    Y | X=x ~ reg.predict_target_distribution, for x in `X`.</span>
