@@ -77,6 +77,86 @@
   
 </a>
     
+    <div class="dropdown" id="version_switcher">
+    <button type="button" class="btn btn-sm navbar-btn dropdown-toggle" id="version_switcher_button" data-toggle="dropdown">
+        latest  <!-- this text may get changed later by javascript -->
+        <span class="caret"></span>
+    </button>
+    <div id="version_switcher_menu" class="dropdown-menu list-group-flush py-0" aria-labelledby="version_switcher_button">
+    <!-- dropdown will be populated by javascript on page load -->
+    </div>
+</div>
+
+<!-- NOTE: this JS must live here (not in our global JS file) because it relies
+     on being processed by Jinja before it is run (specifically for replacing
+     variables generated/api/skactiveml.base.SkactivemlRegressor and {'json_url': 'https://github.com/AlexanderBenz/scikit-activeml-project/blob/versioning-of-docs/docs/switcher.json', 'version_match': 'latest'}.
+-->
+
+<script type="text/javascript">
+// Check if corresponding page path exists in other version of docs
+// and, if so, go there instead of the homepage of the other docs version
+function checkPageExistsAndRedirect(event) {
+    const currentFilePath = "generated/api/skactiveml.base.SkactivemlRegressor.html",
+          tryUrl = event.target.getAttribute("href");
+    let otherDocsHomepage = tryUrl.replace(currentFilePath, "");
+    $.ajax({
+        type: 'HEAD',
+        url: tryUrl,
+        // if the page exists, go there
+        success: function() {
+            location.href = tryUrl;
+        }
+    }).fail(function() {
+        location.href = otherDocsHomepage;
+    });
+    // this prevents the browser from following the href of the clicked node
+    // (which is fine because this function takes care of redirecting)
+    return false;
+}
+
+// Populate the version switcher from the JSON config file
+(function () {
+    $.getJSON("https://github.com/AlexanderBenz/scikit-activeml-project/blob/versioning-of-docs/docs/switcher.json", function(data, textStatus, jqXHR) {
+        const currentFilePath = "generated/api/skactiveml.base.SkactivemlRegressor.html";
+        let btn = document.getElementById("version_switcher_button");
+        // Set empty strings by default so that these attributes exist and can be used in CSS selectors
+        btn.dataset["activeVersionName"] = "";
+        btn.dataset["activeVersion"] = "";
+        // create links to the corresponding page in the other docs versions
+        $.each(data, function(index, entry) {
+            // if no custom name specified (e.g., "latest"), use version string
+            if (!("name" in entry)) {
+                entry.name = entry.version;
+            }
+            // create the node
+            const node = document.createElement("a");
+            node.setAttribute("class", "list-group-item list-group-item-action py-1");
+            node.textContent = `${entry.name}`;
+            node.setAttribute("href", `${entry.url}${currentFilePath}`);
+            // on click, AJAX calls will check if the linked page exists before
+            // trying to redirect, and if not, will redirect to the homepage
+            // for that version of the docs.
+            node.onclick = checkPageExistsAndRedirect;
+            // Add dataset values for the version and name in case people want
+            // to apply CSS styling based on this information.
+            node.dataset["versionName"] = entry.name;
+            node.dataset["version"] = entry.version;
+
+            $("#version_switcher_menu").append(node);
+            // replace dropdown button text with the preferred display name of
+            // this version, rather than using sphinx's latest variable.
+            // also highlight the dropdown entry for the currently-viewed
+            // version's entry
+            if (entry.version == "latest") {
+                node.classList.add("active");
+                btn.innerText = btn.dataset["activeVersionName"] = entry.name;
+                btn.dataset["activeVersion"] = entry.version;
+            }
+        });
+    });
+})();
+</script>
+    
   </div>
 
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar-collapsible" aria-controls="navbar-collapsible" aria-expanded="false" aria-label="Toggle navigation">
@@ -714,24 +794,9 @@
     
     <div class="toc-item">
       
-<div class="tocsection onthispage mt-5 pt-1 pb-3">
-    <i class="fas fa-list"></i> On this page
-</div>
 
 <nav id="bd-toc-nav">
-    <ul class="visible nav section-nav flex-column">
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#examples-using-skactiveml-base-skactivemlregressor">
-   Examples using
-   <code class="docutils literal notranslate">
-    <span class="pre">
-     skactiveml.base.SkactivemlRegressor
-    </span>
-   </code>
-  </a>
- </li>
-</ul>
-
+    
 </nav>
     </div>
     
@@ -1036,31 +1101,7 @@ sub-estimator of a meta-estimator, e.g. used inside a
 
 </dd></dl>
 
-<section id="examples-using-skactiveml-base-skactivemlregressor">
-<span id="sphx-glr-backref-skactiveml-base-skactivemlregressor"></span><h2>Examples using <code class="docutils literal notranslate"><span class="pre">skactiveml.base.SkactivemlRegressor</span></code><a class="headerlink" href="#examples-using-skactiveml-base-skactivemlregressor" title="Permalink to this headline">#</a></h2>
-<div class="sphx-glr-thumbnails"><div class="sphx-glr-thumbcontainer" tooltip="Greedy Sampling on the Feature Space (GSx)"><img alt="" src="../../_images/sphx_glr_plot-GreedySamplingX-Greedy_Sampling_on_the_Feature_Space_(GSx)_thumb.gif" />
-<p><a class="reference internal" href="../sphinx_gallery_examples/pool/plot-GreedySamplingX-Greedy_Sampling_on_the_Feature_Space_%28GSx%29.html#sphx-glr-generated-sphinx-gallery-examples-pool-plot-greedysamplingx-greedy-sampling-on-the-feature-space-gsx-py"><span class="std std-ref">Greedy Sampling on the Feature Space (GSx)</span></a></p>
-  <div class="sphx-glr-thumbnail-title">Greedy Sampling on the Feature Space (GSx)</div>
-</div><div class="sphx-glr-thumbcontainer" tooltip="Greedy Sampling on the Target Space (GSy)"><img alt="" src="../../_images/sphx_glr_plot-GreedySamplingTarget-Greedy_Sampling_on_the_Target_Space_(GSy)_thumb.gif" />
-<p><a class="reference internal" href="../sphinx_gallery_examples/pool/plot-GreedySamplingTarget-Greedy_Sampling_on_the_Target_Space_%28GSy%29.html#sphx-glr-generated-sphinx-gallery-examples-pool-plot-greedysamplingtarget-greedy-sampling-on-the-target-space-gsy-py"><span class="std std-ref">Greedy Sampling on the Target Space (GSy)</span></a></p>
-  <div class="sphx-glr-thumbnail-title">Greedy Sampling on the Target Space (GSy)</div>
-</div><div class="sphx-glr-thumbcontainer" tooltip="Improved Greedy Sampling (GSi)"><img alt="" src="../../_images/sphx_glr_plot-GreedySamplingTarget-Improved_Greedy_Sampling_(GSi)_thumb.gif" />
-<p><a class="reference internal" href="../sphinx_gallery_examples/pool/plot-GreedySamplingTarget-Improved_Greedy_Sampling_%28GSi%29.html#sphx-glr-generated-sphinx-gallery-examples-pool-plot-greedysamplingtarget-improved-greedy-sampling-gsi-py"><span class="std std-ref">Improved Greedy Sampling (GSi)</span></a></p>
-  <div class="sphx-glr-thumbnail-title">Improved Greedy Sampling (GSi)</div>
-</div><div class="sphx-glr-thumbcontainer" tooltip="Expected Model Variance Reduction"><img alt="" src="../../_images/sphx_glr_plot-ExpectedModelVarianceReduction-Expected_Model_Variance_Reduction_thumb.gif" />
-<p><a class="reference internal" href="../sphinx_gallery_examples/pool/plot-ExpectedModelVarianceReduction-Expected_Model_Variance_Reduction.html#sphx-glr-generated-sphinx-gallery-examples-pool-plot-expectedmodelvariancereduction-expected-model-variance-reduction-py"><span class="std std-ref">Expected Model Variance Reduction</span></a></p>
-  <div class="sphx-glr-thumbnail-title">Expected Model Variance Reduction</div>
-</div><div class="sphx-glr-thumbcontainer" tooltip="Expected Model Change"><img alt="" src="../../_images/sphx_glr_plot-ExpectedModelChangeMaximization-Expected_Model_Change_thumb.gif" />
-<p><a class="reference internal" href="../sphinx_gallery_examples/pool/plot-ExpectedModelChangeMaximization-Expected_Model_Change.html#sphx-glr-generated-sphinx-gallery-examples-pool-plot-expectedmodelchangemaximization-expected-model-change-py"><span class="std std-ref">Expected Model Change</span></a></p>
-  <div class="sphx-glr-thumbnail-title">Expected Model Change</div>
-</div><div class="sphx-glr-thumbcontainer" tooltip="Expected Model Output Change"><img alt="" src="../../_images/sphx_glr_plot-ExpectedModelOutputChange-Expected_Model_Output_Change_thumb.gif" />
-<p><a class="reference internal" href="../sphinx_gallery_examples/pool/plot-ExpectedModelOutputChange-Expected_Model_Output_Change.html#sphx-glr-generated-sphinx-gallery-examples-pool-plot-expectedmodeloutputchange-expected-model-output-change-py"><span class="std std-ref">Expected Model Output Change</span></a></p>
-  <div class="sphx-glr-thumbnail-title">Expected Model Output Change</div>
-</div><div class="sphx-glr-thumbcontainer" tooltip="Regression based Kullback Leibler Divergence Maximization"><img alt="" src="../../_images/sphx_glr_plot-KLDivergenceMaximization-Regression_based_Kullback_Leibler_Divergence_Maximization_thumb.gif" />
-<p><a class="reference internal" href="../sphinx_gallery_examples/pool/plot-KLDivergenceMaximization-Regression_based_Kullback_Leibler_Divergence_Maximization.html#sphx-glr-generated-sphinx-gallery-examples-pool-plot-kldivergencemaximization-regression-based-kullback-leibler-divergence-maximization-py"><span class="std std-ref">Regression based Kullback Leibler Divergence Maximization</span></a></p>
-  <div class="sphx-glr-thumbnail-title">Regression based Kullback Leibler Divergence Maximization</div>
-</div></div></section>
-</section>
+<span class="target" id="sphx-glr-backref-skactiveml-base-skactivemlregressor"></span></section>
 
 
               </article>
