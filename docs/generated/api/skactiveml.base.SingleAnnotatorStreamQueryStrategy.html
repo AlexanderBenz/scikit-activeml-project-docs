@@ -60,20 +60,85 @@
 
   <div id="navbar-start">
     
-    
-  
+    <div class="dropdown" id="version_switcher">
+    <button type="button" class="btn btn-sm navbar-btn dropdown-toggle" id="version_switcher_button" data-toggle="dropdown">
+        latest  <!-- this text may get changed later by javascript -->
+        <span class="caret"></span>
+    </button>
+    <div id="version_switcher_menu" class="dropdown-menu list-group-flush py-0" aria-labelledby="version_switcher_button">
+    <!-- dropdown will be populated by javascript on page load -->
+    </div>
+</div>
 
+<!-- NOTE: this JS must live here (not in our global JS file) because it relies
+     on being processed by Jinja before it is run (specifically for replacing
+     variables generated/api/skactiveml.base.SingleAnnotatorStreamQueryStrategy and {'json_url': 'https://github.com/AlexanderBenz/scikit-activeml-project/blob/versioning-of-docs/docs/switcher.json', 'version_match': 'latest'}.
+-->
 
-<a class="navbar-brand logo" href="../../index.html">
-  
-  
-  
-  
-    <img src="../../_static/scikit-activeml-logo.png" class="logo__image only-light" alt="Logo image">
-    <img src="../../_static/scikit-activeml-logo.png" class="logo__image only-dark" alt="Logo image">
-  
-  
-</a>
+<script type="text/javascript">
+// Check if corresponding page path exists in other version of docs
+// and, if so, go there instead of the homepage of the other docs version
+function checkPageExistsAndRedirect(event) {
+    const currentFilePath = "generated/api/skactiveml.base.SingleAnnotatorStreamQueryStrategy.html",
+          tryUrl = event.target.getAttribute("href");
+    let otherDocsHomepage = tryUrl.replace(currentFilePath, "");
+    $.ajax({
+        type: 'HEAD',
+        url: tryUrl,
+        // if the page exists, go there
+        success: function() {
+            location.href = tryUrl;
+        }
+    }).fail(function() {
+        location.href = otherDocsHomepage;
+    });
+    // this prevents the browser from following the href of the clicked node
+    // (which is fine because this function takes care of redirecting)
+    return false;
+}
+
+// Populate the version switcher from the JSON config file
+(function () {
+    $.getJSON("https://github.com/AlexanderBenz/scikit-activeml-project/blob/versioning-of-docs/docs/switcher.json", function(data, textStatus, jqXHR) {
+        const currentFilePath = "generated/api/skactiveml.base.SingleAnnotatorStreamQueryStrategy.html";
+        let btn = document.getElementById("version_switcher_button");
+        // Set empty strings by default so that these attributes exist and can be used in CSS selectors
+        btn.dataset["activeVersionName"] = "";
+        btn.dataset["activeVersion"] = "";
+        // create links to the corresponding page in the other docs versions
+        $.each(data, function(index, entry) {
+            // if no custom name specified (e.g., "latest"), use version string
+            if (!("name" in entry)) {
+                entry.name = entry.version;
+            }
+            // create the node
+            const node = document.createElement("a");
+            node.setAttribute("class", "list-group-item list-group-item-action py-1");
+            node.textContent = `${entry.name}`;
+            node.setAttribute("href", `${entry.url}${currentFilePath}`);
+            // on click, AJAX calls will check if the linked page exists before
+            // trying to redirect, and if not, will redirect to the homepage
+            // for that version of the docs.
+            node.onclick = checkPageExistsAndRedirect;
+            // Add dataset values for the version and name in case people want
+            // to apply CSS styling based on this information.
+            node.dataset["versionName"] = entry.name;
+            node.dataset["version"] = entry.version;
+
+            $("#version_switcher_menu").append(node);
+            // replace dropdown button text with the preferred display name of
+            // this version, rather than using sphinx's latest variable.
+            // also highlight the dropdown entry for the currently-viewed
+            // version's entry
+            if (entry.version == "latest") {
+                node.classList.add("active");
+                btn.innerText = btn.dataset["activeVersionName"] = entry.name;
+                btn.dataset["activeVersion"] = entry.version;
+            }
+        });
+    });
+})();
+</script>
     
   </div>
 
@@ -712,24 +777,9 @@
     
     <div class="toc-item">
       
-<div class="tocsection onthispage mt-5 pt-1 pb-3">
-    <i class="fas fa-list"></i> On this page
-</div>
 
 <nav id="bd-toc-nav">
-    <ul class="visible nav section-nav flex-column">
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#examples-using-skactiveml-base-singleannotatorstreamquerystrategy">
-   Examples using
-   <code class="docutils literal notranslate">
-    <span class="pre">
-     skactiveml.base.SingleAnnotatorStreamQueryStrategy
-    </span>
-   </code>
-  </a>
- </li>
-</ul>
-
+    
 </nav>
     </div>
     
@@ -918,46 +968,7 @@ only if they are supported by the base query strategy.</p>
 
 </dd></dl>
 
-<section id="examples-using-skactiveml-base-singleannotatorstreamquerystrategy">
-<span id="sphx-glr-backref-skactiveml-base-singleannotatorstreamquerystrategy"></span><h2>Examples using <code class="docutils literal notranslate"><span class="pre">skactiveml.base.SingleAnnotatorStreamQueryStrategy</span></code><a class="headerlink" href="#examples-using-skactiveml-base-singleannotatorstreamquerystrategy" title="Permalink to this headline">#</a></h2>
-<div class="sphx-glr-thumbnails"><div class="sphx-glr-thumbcontainer" tooltip="Split"><img alt="" src="../../_images/sphx_glr_plot-Split-Split_thumb.gif" />
-<p><a class="reference internal" href="../sphinx_gallery_examples/stream/plot-Split-Split.html#sphx-glr-generated-sphinx-gallery-examples-stream-plot-split-split-py"><span class="std std-ref">Split</span></a></p>
-  <div class="sphx-glr-thumbnail-title">Split</div>
-</div><div class="sphx-glr-thumbcontainer" tooltip="Periodic Sampling"><img alt="" src="../../_images/sphx_glr_plot-PeriodicSampling-Periodic_Sampling_thumb.gif" />
-<p><a class="reference internal" href="../sphinx_gallery_examples/stream/plot-PeriodicSampling-Periodic_Sampling.html#sphx-glr-generated-sphinx-gallery-examples-stream-plot-periodicsampling-periodic-sampling-py"><span class="std std-ref">Periodic Sampling</span></a></p>
-  <div class="sphx-glr-thumbnail-title">Periodic Sampling</div>
-</div><div class="sphx-glr-thumbcontainer" tooltip="Stream Random Sampling"><img alt="" src="../../_images/sphx_glr_plot-StreamRandomSampling-Stream_Random_Sampling_thumb.gif" />
-<p><a class="reference internal" href="../sphinx_gallery_examples/stream/plot-StreamRandomSampling-Stream_Random_Sampling.html#sphx-glr-generated-sphinx-gallery-examples-stream-plot-streamrandomsampling-stream-random-sampling-py"><span class="std std-ref">Stream Random Sampling</span></a></p>
-  <div class="sphx-glr-thumbnail-title">Stream Random Sampling</div>
-</div><div class="sphx-glr-thumbcontainer" tooltip="Fixed-Uncertainty"><img alt="" src="../../_images/sphx_glr_plot-FixedUncertainty-Fixed-Uncertainty_thumb.gif" />
-<p><a class="reference internal" href="../sphinx_gallery_examples/stream/plot-FixedUncertainty-Fixed-Uncertainty.html#sphx-glr-generated-sphinx-gallery-examples-stream-plot-fixeduncertainty-fixed-uncertainty-py"><span class="std std-ref">Fixed-Uncertainty</span></a></p>
-  <div class="sphx-glr-thumbnail-title">Fixed-Uncertainty</div>
-</div><div class="sphx-glr-thumbcontainer" tooltip="Variable-Uncertainty"><img alt="" src="../../_images/sphx_glr_plot-VariableUncertainty-Variable-Uncertainty_thumb.gif" />
-<p><a class="reference internal" href="../sphinx_gallery_examples/stream/plot-VariableUncertainty-Variable-Uncertainty.html#sphx-glr-generated-sphinx-gallery-examples-stream-plot-variableuncertainty-variable-uncertainty-py"><span class="std std-ref">Variable-Uncertainty</span></a></p>
-  <div class="sphx-glr-thumbnail-title">Variable-Uncertainty</div>
-</div><div class="sphx-glr-thumbcontainer" tooltip="Density Based Active Learning for Data Streams"><img alt="" src="../../_images/sphx_glr_plot-StreamDensityBasedAL-Density_Based_Active_Learning_for_Data_Streams_thumb.gif" />
-<p><a class="reference internal" href="../sphinx_gallery_examples/stream/plot-StreamDensityBasedAL-Density_Based_Active_Learning_for_Data_Streams.html#sphx-glr-generated-sphinx-gallery-examples-stream-plot-streamdensitybasedal-density-based-active-learning-for-data-streams-py"><span class="std std-ref">Density Based Active Learning for Data Streams</span></a></p>
-  <div class="sphx-glr-thumbnail-title">Density Based Active Learning for Data Streams</div>
-</div><div class="sphx-glr-thumbcontainer" tooltip="Randomized-Variable-Uncertainty"><img alt="" src="../../_images/sphx_glr_plot-RandomVariableUncertainty-Randomized-Variable-Uncertainty_thumb.gif" />
-<p><a class="reference internal" href="../sphinx_gallery_examples/stream/plot-RandomVariableUncertainty-Randomized-Variable-Uncertainty.html#sphx-glr-generated-sphinx-gallery-examples-stream-plot-randomvariableuncertainty-randomized-variable-uncertainty-py"><span class="std std-ref">Randomized-Variable-Uncertainty</span></a></p>
-  <div class="sphx-glr-thumbnail-title">Randomized-Variable-Uncertainty</div>
-</div><div class="sphx-glr-thumbcontainer" tooltip="Cognitive Dual-Query Strategy with Random Sampling"><img alt="" src="../../_images/sphx_glr_plot-CognitiveDualQueryStrategyRan-Cognitive_Dual-Query_Strategy_with_Random_Sampling_thumb.gif" />
-<p><a class="reference internal" href="../sphinx_gallery_examples/stream/plot-CognitiveDualQueryStrategyRan-Cognitive_Dual-Query_Strategy_with_Random_Sampling.html#sphx-glr-generated-sphinx-gallery-examples-stream-plot-cognitivedualquerystrategyran-cognitive-dual-query-strategy-with-random-sampling-py"><span class="std std-ref">Cognitive Dual-Query Strategy with Random Sampling</span></a></p>
-  <div class="sphx-glr-thumbnail-title">Cognitive Dual-Query Strategy with Random Sampling</div>
-</div><div class="sphx-glr-thumbcontainer" tooltip="Cognitive Dual-Query Strategy with Variable-Uncertainty"><img alt="" src="../../_images/sphx_glr_plot-CognitiveDualQueryStrategyVarUn-Cognitive_Dual-Query_Strategy_with_Variable-Uncertainty_thumb.gif" />
-<p><a class="reference internal" href="../sphinx_gallery_examples/stream/plot-CognitiveDualQueryStrategyVarUn-Cognitive_Dual-Query_Strategy_with_Variable-Uncertainty.html#sphx-glr-generated-sphinx-gallery-examples-stream-plot-cognitivedualquerystrategyvarun-cognitive-dual-query-strategy-with-variable-uncertainty-py"><span class="std std-ref">Cognitive Dual-Query Strategy with Variable-Uncertainty</span></a></p>
-  <div class="sphx-glr-thumbnail-title">Cognitive Dual-Query Strategy with Variable-Uncertainty</div>
-</div><div class="sphx-glr-thumbcontainer" tooltip="Cognitive Dual-Query Strategy with Fixed-Uncertainty"><img alt="" src="../../_images/sphx_glr_plot-CognitiveDualQueryStrategyFixUn-Cognitive_Dual-Query_Strategy_with_Fixed-Uncertainty_thumb.gif" />
-<p><a class="reference internal" href="../sphinx_gallery_examples/stream/plot-CognitiveDualQueryStrategyFixUn-Cognitive_Dual-Query_Strategy_with_Fixed-Uncertainty.html#sphx-glr-generated-sphinx-gallery-examples-stream-plot-cognitivedualquerystrategyfixun-cognitive-dual-query-strategy-with-fixed-uncertainty-py"><span class="std std-ref">Cognitive Dual-Query Strategy with Fixed-Uncertainty</span></a></p>
-  <div class="sphx-glr-thumbnail-title">Cognitive Dual-Query Strategy with Fixed-Uncertainty</div>
-</div><div class="sphx-glr-thumbcontainer" tooltip="Cognitive Dual-Query Strategy with Randomized-Variable-Uncertainty"><img alt="" src="../../_images/sphx_glr_plot-CognitiveDualQueryStrategyRanVarUn-Cognitive_Dual-Query_Strategy_with_Randomized-Variable-Uncertainty_thumb.gif" />
-<p><a class="reference internal" href="../sphinx_gallery_examples/stream/plot-CognitiveDualQueryStrategyRanVarUn-Cognitive_Dual-Query_Strategy_with_Randomized-Variable-Uncertainty.html#sphx-glr-generated-sphinx-gallery-examples-stream-plot-cognitivedualquerystrategyranvarun-cognitive-dual-query-strategy-with-randomized-variable-uncertainty-py"><span class="std std-ref">Cognitive Dual-Query Strategy with Randomized-Variable-Uncertainty</span></a></p>
-  <div class="sphx-glr-thumbnail-title">Cognitive Dual-Query Strategy with Randomized-Variable-Uncertainty</div>
-</div><div class="sphx-glr-thumbcontainer" tooltip="Probabilistic Active Learning in Datastreams"><img alt="" src="../../_images/sphx_glr_plot-StreamProbabilisticAL-Probabilistic_Active_Learning_in_Datastreams_thumb.gif" />
-<p><a class="reference internal" href="../sphinx_gallery_examples/stream/plot-StreamProbabilisticAL-Probabilistic_Active_Learning_in_Datastreams.html#sphx-glr-generated-sphinx-gallery-examples-stream-plot-streamprobabilistical-probabilistic-active-learning-in-datastreams-py"><span class="std std-ref">Probabilistic Active Learning in Datastreams</span></a></p>
-  <div class="sphx-glr-thumbnail-title">Probabilistic Active Learning in Datastreams</div>
-</div></div></section>
-</section>
+<span class="target" id="sphx-glr-backref-skactiveml-base-singleannotatorstreamquerystrategy"></span></section>
 
 
               </article>
