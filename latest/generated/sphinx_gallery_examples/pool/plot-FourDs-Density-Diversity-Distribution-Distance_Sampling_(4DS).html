@@ -1,0 +1,1514 @@
+
+<!DOCTYPE html>
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>Density-Diversity-Distribution-Distance Sampling &#8212; scikit-activeml latest documentation</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../../_static/styles/theme.css?digest=796348d33e8b1d947c94" rel="stylesheet">
+<link href="../../../_static/styles/bootstrap.css?digest=796348d33e8b1d947c94" rel="stylesheet">
+<link href="../../../_static/styles/pydata-sphinx-theme.css?digest=796348d33e8b1d947c94" rel="stylesheet">
+
+  
+  <link href="../../../_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=796348d33e8b1d947c94" rel="stylesheet">
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../../../_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2">
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../../_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2">
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../../_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2">
+
+    <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/sg_gallery.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/sg_gallery-binder.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/sg_gallery-dataframe.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/sg_gallery-rendered-html.css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../../_static/scripts/bootstrap.js?digest=796348d33e8b1d947c94">
+<link rel="preload" as="script" href="../../../_static/scripts/pydata-sphinx-theme.js?digest=796348d33e8b1d947c94">
+
+    <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
+    <script src="../../../_static/jquery.js"></script>
+    <script src="../../../_static/underscore.js"></script>
+    <script src="../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="../../../_static/doctools.js"></script>
+    <script src="../../../_static/sphinx_highlight.js"></script>
+    <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'generated/sphinx_gallery_examples/pool/plot-FourDs-Density-Diversity-Distribution-Distance_Sampling_(4DS)';</script>
+    <script>
+        DOCUMENTATION_OPTIONS.theme_switcher_json_url = 'https://alexanderbenz.github.io/scikit-activeml-project-docs/latest/_static/switcher.json';
+        DOCUMENTATION_OPTIONS.theme_switcher_version_match = 'latest';
+        </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="../../../_static/filter_examples.js"></script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+    <link rel="next" title="Monte-Carlo EER with Log-Loss" href="plot-MonteCarloEER-Monte-Carlo_EER_with_Log-Loss.html" />
+    <link rel="prev" title="Expected Average Precision" href="plot-UncertaintySampling-Expected_Average_Precision.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="docsearch:language" content="en">
+  </head>
+  
+  
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="180" data-default-mode="">
+
+  
+  
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+
+  
+  <input type="checkbox" class="sidebar-toggle" name="__primary" id="__primary">
+  <label class="overlay overlay-primary" for="__primary"></label>
+
+  
+  <input type="checkbox" class="sidebar-toggle" name="__secondary" id="__secondary">
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+      
+<form class="bd-search d-flex align-items-center" action="../../../search.html" method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search the docs ..." aria-label="Search the docs ..." autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false">
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+    </div>
+  </div>
+
+  
+  <nav class="bd-header navbar navbar-expand-lg bd-navbar" id="navbar-main"><div class="bd-header__inner bd-page-width">
+  <label class="sidebar-toggle primary-toggle" for="__primary">
+      <span class="fa-solid fa-bars"></span>
+  </label>
+  <div id="navbar-start">
+    
+    
+  
+
+
+<a class="navbar-brand logo" href="../../../index.html">
+
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <img src="../../../_static/scikit-activeml-logo.png" class="logo__image only-light" alt="Logo image">
+    <img src="../../../_static/scikit-activeml-logo.png" class="logo__image only-dark" alt="Logo image">
+  
+  
+</a>
+    
+    <div class="version-switcher__container dropdown">
+    <button type="button" class="version-switcher__button btn btn-sm navbar-btn dropdown-toggle" data-toggle="dropdown">
+        latest  <!-- this text may get changed later by javascript -->
+        <span class="caret"></span>
+    </button>
+    <div class="version-switcher__menu dropdown-menu list-group-flush py-0">
+    <!-- dropdown will be populated by javascript on page load -->
+    </div>
+</div>
+    
+  </div>
+
+  
+  <div class="col-lg-9 navbar-header-items">
+    <div id="navbar-center" class="mr-auto">
+      
+      <div class="navbar-center-item">
+        <nav class="navbar-nav">
+    <p class="sidebar-header-items__title" role="heading" aria-level="1" aria-label="Site Navigation">
+        Site Navigation
+    </p>
+    <ul id="navbar-main-elements" class="navbar-nav">
+        
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../../../index.html">
+                        Home
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../../../tutorials.html">
+                        Tutorials
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../../strategy_overview.html">
+                        Strategy Overview
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../../api_reference.html">
+                        API Reference
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item current active">
+                      <a class="nav-link nav-internal" href="../index.html">
+                        Examples
+                      </a>
+                    </li>
+                
+            <div class="nav-item dropdown">
+                <button class="btn dropdown-toggle nav-item" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    More
+                </button>
+                <div class="dropdown-menu">
+                    
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../../../developers_guide.html">
+                        Developer Guide
+                      </a>
+                    </li>
+                
+                </div>
+            </div>
+            
+    </ul>
+</nav>
+      </div>
+      
+    </div>
+
+    <div id="navbar-end">
+      
+        <div class="navbar-end-item navbar-persistent--container">
+          
+<button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-toggle="tooltip">
+  <i class="fa-solid fa-magnifying-glass"></i>
+</button>
+        </div>
+      
+      
+      <div class="navbar-end-item">
+        <button class="theme-switch-button btn btn-sm btn-outline-primary navbar-btn rounded-circle" title="light/dark" aria-label="light/dark" data-toggle="tooltip">
+    <span class="theme-switch" data-mode="light"><i class="fa-solid fa-sun"></i></span>
+    <span class="theme-switch" data-mode="dark"><i class="fa-solid fa-moon"></i></span>
+    <span class="theme-switch" data-mode="auto"><i class="fa-solid fa-circle-half-stroke"></i></span>
+</button>
+      </div>
+      
+      <div class="navbar-end-item">
+        <ul id="navbar-icon-links" class="navbar-nav" aria-label="Quick Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/scikit-activeml/scikit-activeml" title="GitHub" class="nav-link" rel="noopener" target="_blank" data-toggle="tooltip"><span><i class="fa-brands fa-square-github"></i></span>
+            <label class="sr-only">GitHub</label></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://pypi.org/project/scikit-activeml" title="PyPI" class="nav-link" rel="noopener" target="_blank" data-toggle="tooltip"><span><i class="fas fa-box"></i></span>
+            <label class="sr-only">PyPI</label></a>
+        </li>
+      </ul>
+      </div>
+      
+    </div>
+  </div>
+
+
+  
+  
+    <div class="navbar-persistent--mobile">
+<button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-toggle="tooltip">
+  <i class="fa-solid fa-magnifying-glass"></i>
+</button>
+    </div>
+  
+
+  
+  <label class="sidebar-toggle secondary-toggle" for="__secondary">
+      <span class="fa-solid fa-outdent"></span>
+  </label>
+  
+
+</div>
+  </nav>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+      <div class="sidebar-header-items__center">
+      
+      <div class="navbar-center-item">
+        <nav class="navbar-nav">
+    <p class="sidebar-header-items__title" role="heading" aria-level="1" aria-label="Site Navigation">
+        Site Navigation
+    </p>
+    <ul id="navbar-main-elements" class="navbar-nav">
+        
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../../../index.html">
+                        Home
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../../../tutorials.html">
+                        Tutorials
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../../strategy_overview.html">
+                        Strategy Overview
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../../api_reference.html">
+                        API Reference
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item current active">
+                      <a class="nav-link nav-internal" href="../index.html">
+                        Examples
+                      </a>
+                    </li>
+                
+            <div class="nav-item dropdown">
+                <button class="btn dropdown-toggle nav-item" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    More
+                </button>
+                <div class="dropdown-menu">
+                    
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../../../developers_guide.html">
+                        Developer Guide
+                      </a>
+                    </li>
+                
+                </div>
+            </div>
+            
+    </ul>
+</nav>
+      </div>
+      
+      </div>
+    
+
+    
+    
+    <div class="sidebar-header-items__end">
+      
+      <div class="navbar-end-item">
+        <button class="theme-switch-button btn btn-sm btn-outline-primary navbar-btn rounded-circle" title="light/dark" aria-label="light/dark" data-toggle="tooltip">
+    <span class="theme-switch" data-mode="light"><i class="fa-solid fa-sun"></i></span>
+    <span class="theme-switch" data-mode="dark"><i class="fa-solid fa-moon"></i></span>
+    <span class="theme-switch" data-mode="auto"><i class="fa-solid fa-circle-half-stroke"></i></span>
+</button>
+      </div>
+      
+      <div class="navbar-end-item">
+        <ul id="navbar-icon-links" class="navbar-nav" aria-label="Quick Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/scikit-activeml/scikit-activeml" title="GitHub" class="nav-link" rel="noopener" target="_blank" data-toggle="tooltip"><span><i class="fa-brands fa-square-github"></i></span>
+            <label class="sr-only">GitHub</label></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://pypi.org/project/scikit-activeml" title="PyPI" class="nav-link" rel="noopener" target="_blank" data-toggle="tooltip"><span><i class="fas fa-box"></i></span>
+            <label class="sr-only">PyPI</label></a>
+        </li>
+      </ul>
+      </div>
+      
+    </div>
+    
+  </div>
+
+  
+  <div class="sidebar-start-items sidebar-primary__section">
+    <div class="sidebar-start-items__item"><nav class="bd-links" id="bd-docs-nav" aria-label="Section navigation">
+  <p class="bd-links__title" role="heading" aria-level="1">
+    Section Navigation
+  </p>
+  <div class="bd-toc-item navbar-nav">
+    <ul class="current nav bd-sidenav">
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="index.html">Pool Based AL Strategies</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-1"><i class="fa-solid fa-chevron-down"></i></label><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="plot-RandomSampling-Random_Sampling.html">Random Sampling</a></li>
+<li class="toctree-l2"><a class="reference internal" href="plot-CostEmbeddingAL-Active_Learning_with_Cost_Embedding_%28ALCE%29.html">Active Learning with Cost Embedding</a></li>
+<li class="toctree-l2"><a class="reference internal" href="plot-UncertaintySampling-Uncertainty_Sampling_with_Entropy.html">Uncertainty Sampling with Entropy</a></li>
+<li class="toctree-l2"><a class="reference internal" href="plot-EpistemicUncertaintySampling-Epistemic_Uncertainty_Sampling.html">Epistemic Uncertainty Sampling</a></li>
+<li class="toctree-l2"><a class="reference internal" href="plot-Quire-Querying_Informative_and_Representative_Examples_%28QUIRE%29.html">Querying Informative and Representative Examples</a></li>
+<li class="toctree-l2"><a class="reference internal" href="plot-UncertaintySampling-Uncertainty_Sampling_with_Margin.html">Uncertainty Sampling with Margin</a></li>
+<li class="toctree-l2"><a class="reference internal" href="plot-UncertaintySampling-Uncertainty_Sampling_with_Least-Confidence.html">Uncertainty Sampling with Least-Confidence</a></li>
+<li class="toctree-l2"><a class="reference internal" href="plot-UncertaintySampling-Expected_Average_Precision.html">Expected Average Precision</a></li>
+<li class="toctree-l2 current active"><a class="current reference internal" href="#">Density-Diversity-Distribution-Distance Sampling</a></li>
+<li class="toctree-l2"><a class="reference internal" href="plot-MonteCarloEER-Monte-Carlo_EER_with_Log-Loss.html">Monte-Carlo EER with Log-Loss</a></li>
+<li class="toctree-l2"><a class="reference internal" href="plot-MonteCarloEER-Monte-Carlo_EER_with_Misclassification-Loss.html">Monte-Carlo EER with Misclassification-Loss</a></li>
+<li class="toctree-l2"><a class="reference internal" href="plot-FourDs-Batch_Density-Diversity-Distribution-Distance_Sampling_%28Batch4DS%29.html">Batch Density-Diversity-Distribution-Distance Sampling</a></li>
+<li class="toctree-l2"><a class="reference internal" href="plot-DiscriminativeAL-Discriminative_Active_Learning_%28DAL%29.html">Discriminative Active Learning</a></li>
+<li class="toctree-l2"><a class="reference internal" href="plot-ProbabilisticAL-Multi-class_Probabilistic_Active_Learning_%28McPAL%29.html">Multi-class Probabilistic Active Learning</a></li>
+<li class="toctree-l2"><a class="reference internal" href="plot-QueryByCommittee-Query-by-Committee_with_Vote_Entropy.html">Query-by-Committee with Vote Entropy</a></li>
+<li class="toctree-l2"><a class="reference internal" href="plot-QueryByCommittee-Query-by-Committee_with_Kullback-Leibler_Divergence.html">Query-by-Committee with Kullback-Leibler Divergence</a></li>
+<li class="toctree-l2"><a class="reference internal" href="plot-ValueOfInformationEER-Value_of_Information_%28VOI%29.html">Value of Information</a></li>
+<li class="toctree-l2"><a class="reference internal" href="plot-ValueOfInformationEER-Value_of_Information_on_Labeled_Samples.html">Value of Information on Labeled Samples</a></li>
+<li class="toctree-l2"><a class="reference internal" href="plot-ValueOfInformationEER-Value_of_Information_on_Unlabeled_Samples.html">Value of Information on Unlabeled Samples</a></li>
+<li class="toctree-l2"><a class="reference internal" href="plot-BatchBALD-Batch_Bayesian_Active_Learning_by_Disagreement.html">Batch Bayesian Active Learning by Disagreement (BatchBALD)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="plot-BatchBALD-Bayesian_Active_Learning_by_Disagreement_%28BALD%29.html">Bayesian Active Learning by Disagreement</a></li>
+<li class="toctree-l2"><a class="reference internal" href="plot-GreedyBALD-Bayesian_Active_Learning_by_Disagreement_%28BALD%29.html">Bayesian Active Learning by Disagreement</a></li>
+<li class="toctree-l2"><a class="reference internal" href="plot-UncertaintySampling-Density-weighted_Uncertainty_Sampling.html">Density-weighted Uncertainty Sampling</a></li>
+<li class="toctree-l2"><a class="reference internal" href="plot-GreedySamplingX-Greedy_Sampling_on_the_Feature_Space_%28GSx%29.html">Greedy Sampling on the Feature Space (GSx)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="plot-GreedySamplingTarget-Greedy_Sampling_on_the_Target_Space_%28GSy%29.html">Greedy Sampling on the Target Space (GSy)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="plot-GreedySamplingTarget-Improved_Greedy_Sampling_%28GSi%29.html">Improved Greedy Sampling (GSi)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="plot-ExpectedModelVarianceReduction-Expected_Model_Variance_Reduction.html">Expected Model Variance Reduction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="plot-ExpectedModelChangeMaximization-Expected_Model_Change.html">Expected Model Change</a></li>
+<li class="toctree-l2"><a class="reference internal" href="plot-ExpectedModelOutputChange-Expected_Model_Output_Change.html">Expected Model Output Change</a></li>
+<li class="toctree-l2"><a class="reference internal" href="plot-KLDivergenceMaximization-Regression_based_Kullback_Leibler_Divergence_Maximization.html">Regression based Kullback Leibler Divergence Maximization</a></li>
+<li class="toctree-l2"><a class="reference internal" href="plot-UncertaintySampling-Dual_strategy_for_Active_Learning.html">Dual strategy for Active Learning</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../stream/index.html">Stream Based AL Strategies</a><input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-2"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../stream/plot-Split-Split.html">Split</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../stream/plot-PeriodicSampling-Periodic_Sampling.html">Periodic Sampling</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../stream/plot-StreamRandomSampling-Stream_Random_Sampling.html">Stream Random Sampling</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../stream/plot-FixedUncertainty-Fixed-Uncertainty.html">Fixed-Uncertainty</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../stream/plot-VariableUncertainty-Variable-Uncertainty.html">Variable-Uncertainty</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../stream/plot-StreamDensityBasedAL-Density_Based_Active_Learning_for_Data_Streams.html">Density Based Active Learning for Data Streams</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../stream/plot-RandomVariableUncertainty-Randomized-Variable-Uncertainty.html">Randomized-Variable-Uncertainty</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../stream/plot-CognitiveDualQueryStrategyRan-Cognitive_Dual-Query_Strategy_with_Random_Sampling.html">Cognitive Dual-Query Strategy with Random Sampling</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../stream/plot-CognitiveDualQueryStrategyVarUn-Cognitive_Dual-Query_Strategy_with_Variable-Uncertainty.html">Cognitive Dual-Query Strategy with Variable-Uncertainty</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../stream/plot-CognitiveDualQueryStrategyFixUn-Cognitive_Dual-Query_Strategy_with_Fixed-Uncertainty.html">Cognitive Dual-Query Strategy with Fixed-Uncertainty</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../stream/plot-CognitiveDualQueryStrategyRanVarUn-Cognitive_Dual-Query_Strategy_with_Randomized-Variable-Uncertainty.html">Cognitive Dual-Query Strategy with Randomized-Variable-Uncertainty</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../stream/plot-StreamProbabilisticAL-Probabilistic_Active_Learning_in_Datastreams.html">Probabilistic Active Learning in Datastreams</a></li>
+</ul>
+</li>
+</ul>
+
+  </div>
+</nav>
+    </div>
+  </div>
+  
+
+  
+  <div class="sidebar-end-items sidebar-primary__section">
+    <div class="sidebar-end-items__item">
+    </div>
+  </div>
+
+  
+  <div id="rtd-footer-container"></div>
+
+      </div>
+      <main id="main-content" class="bd-main">
+        
+        
+        <div class="bd-content">
+          <div class="bd-article-container">
+            
+            <div class="bd-header-article">
+                
+            </div>
+            
+            
+            <article class="bd-article" role="main">
+              
+  <div class="sphx-glr-download-link-note admonition note">
+<p class="admonition-title">Note</p>
+<p><a class="reference internal" href="#sphx-glr-download-generated-sphinx-gallery-examples-pool-plot-fourds-density-diversity-distribution-distance-sampling-4ds-py"><span class="std std-ref">Go to the end</span></a>
+to download the full example code</p>
+</div>
+<section class="sphx-glr-example-title" id="density-diversity-distribution-distance-sampling">
+<span id="sphx-glr-generated-sphinx-gallery-examples-pool-plot-fourds-density-diversity-distribution-distance-sampling-4ds-py"></span><h1>Density-Diversity-Distribution-Distance Sampling<a class="headerlink" href="#density-diversity-distribution-distance-sampling" title="Permalink to this heading">#</a></h1>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 9</span> <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="linenos">10</span> <span class="kn">from</span> <span class="nn">matplotlib</span> <span class="kn">import</span> <span class="n">pyplot</span> <span class="k">as</span> <span class="n">plt</span><span class="p">,</span> <span class="n">animation</span>
+<span class="linenos">11</span> <span class="kn">from</span> <span class="nn">sklearn.datasets</span> <span class="kn">import</span> <span class="n">make_blobs</span>
+<span class="linenos">12</span>
+<span class="linenos">13</span> <span class="kn">from</span> <span class="nn">skactiveml.utils</span> <span class="kn">import</span> <a href="https://docs.python.org/3/library/functions.html#float" title="builtins.float" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">MISSING_LABEL</span></a><span class="p">,</span> <a href="../../api/skactiveml.utils.labeled_indices.html#skactiveml.utils.labeled_indices" title="skactiveml.utils.labeled_indices" class="sphx-glr-backref-module-skactiveml-utils sphx-glr-backref-type-py-function"><span class="n">labeled_indices</span></a><span class="p">,</span> <span class="n">unlabeled_indices</span>
+<span class="linenos">14</span> <span class="kn">from</span> <span class="nn">skactiveml.visualization</span> <span class="kn">import</span> <a href="../../api/skactiveml.visualization.plot_utilities.html#skactiveml.visualization.plot_utilities" title="skactiveml.visualization.plot_utilities" class="sphx-glr-backref-module-skactiveml-visualization sphx-glr-backref-type-py-function"><span class="n">plot_utilities</span></a><span class="p">,</span> <a href="../../api/skactiveml.visualization.plot_decision_boundary.html#skactiveml.visualization.plot_decision_boundary" title="skactiveml.visualization.plot_decision_boundary" class="sphx-glr-backref-module-skactiveml-visualization sphx-glr-backref-type-py-function"><span class="n">plot_decision_boundary</span></a>
+<span class="linenos">15</span>
+<span class="linenos">16</span> <span class="kn">from</span> <span class="nn">skactiveml.classifier</span> <span class="kn">import</span> <a href="../../api/skactiveml.classifier.MixtureModelClassifier.html#skactiveml.classifier.MixtureModelClassifier" title="skactiveml.classifier.MixtureModelClassifier" class="sphx-glr-backref-module-skactiveml-classifier sphx-glr-backref-type-py-class"><span class="n">MixtureModelClassifier</span></a>
+<span class="linenos">17</span> <span class="kn">from</span> <span class="nn">skactiveml.pool</span> <span class="kn">import</span> <a href="../../api/skactiveml.pool.FourDs.html#skactiveml.pool.FourDs" title="skactiveml.pool.FourDs" class="sphx-glr-backref-module-skactiveml-pool sphx-glr-backref-type-py-class"><span class="n">FourDs</span></a>
+<span class="linenos">18</span> <span class="kn">from</span> <span class="nn">sklearn.mixture</span> <span class="kn">import</span> <span class="n">GaussianMixture</span>
+<span class="linenos">19</span>
+<span class="linenos">20</span> <a href="https://numpy.org/doc/stable/reference/random/legacy.html#numpy.random.RandomState" title="numpy.random.RandomState" class="sphx-glr-backref-module-numpy-random sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">random_state</span></a> <span class="o">=</span> <a href="https://numpy.org/doc/stable/reference/random/legacy.html#numpy.random.RandomState" title="numpy.random.RandomState" class="sphx-glr-backref-module-numpy-random sphx-glr-backref-type-py-class"><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">RandomState</span></a><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+<span class="linenos">21</span>
+<span class="linenos">22</span> <span class="c1"># Build a dataset.</span>
+<span class="linenos">23</span> <a href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="numpy.ndarray" class="sphx-glr-backref-module-numpy sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">X</span></a><span class="p">,</span> <a href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="numpy.ndarray" class="sphx-glr-backref-module-numpy sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">y_true</span></a> <span class="o">=</span> <span class="n">make_blobs</span><span class="p">(</span><span class="n">n_samples</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">n_features</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span>
+<span class="linenos">24</span>                        <span class="n">centers</span><span class="o">=</span><span class="p">[[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="p">[</span><span class="o">-</span><span class="mi">3</span><span class="p">,</span> <span class="mf">.5</span><span class="p">],</span> <span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">],</span> <span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mf">.5</span><span class="p">]],</span>
+<span class="linenos">25</span>                        <span class="n">cluster_std</span><span class="o">=</span><span class="mf">.7</span><span class="p">,</span> <a href="https://numpy.org/doc/stable/reference/random/legacy.html#numpy.random.RandomState" title="numpy.random.RandomState" class="sphx-glr-backref-module-numpy-random sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">random_state</span></a><span class="o">=</span><a href="https://numpy.org/doc/stable/reference/random/legacy.html#numpy.random.RandomState" title="numpy.random.RandomState" class="sphx-glr-backref-module-numpy-random sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">random_state</span></a><span class="p">)</span>
+<span class="linenos">26</span> <a href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="numpy.ndarray" class="sphx-glr-backref-module-numpy sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">y_true</span></a> <span class="o">=</span> <a href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="numpy.ndarray" class="sphx-glr-backref-module-numpy sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">y_true</span></a> <span class="o">%</span> <span class="mi">2</span>
+<span class="linenos">27</span> <a href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="numpy.ndarray" class="sphx-glr-backref-module-numpy sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">y</span></a> <span class="o">=</span> <a href="https://numpy.org/doc/stable/reference/generated/numpy.full.html#numpy.full" title="numpy.full" class="sphx-glr-backref-module-numpy sphx-glr-backref-type-py-function"><span class="n">np</span><span class="o">.</span><span class="n">full</span></a><span class="p">(</span><span class="n">shape</span><span class="o">=</span><a href="https://docs.python.org/3/library/stdtypes.html#tuple" title="builtins.tuple" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">y_true</span><span class="o">.</span><span class="n">shape</span></a><span class="p">,</span> <span class="n">fill_value</span><span class="o">=</span><a href="https://docs.python.org/3/library/functions.html#float" title="builtins.float" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">MISSING_LABEL</span></a><span class="p">)</span>
+<span class="linenos">28</span>
+<span class="linenos">29</span> <span class="c1"># Initialise the classifier.</span>
+<span class="linenos">30</span> <a href="../../api/skactiveml.classifier.MixtureModelClassifier.html#skactiveml.classifier.MixtureModelClassifier" title="skactiveml.classifier.MixtureModelClassifier" class="sphx-glr-backref-module-skactiveml-classifier sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">clf</span></a> <span class="o">=</span> <a href="../../api/skactiveml.classifier.MixtureModelClassifier.html#skactiveml.classifier.MixtureModelClassifier" title="skactiveml.classifier.MixtureModelClassifier" class="sphx-glr-backref-module-skactiveml-classifier sphx-glr-backref-type-py-class"><span class="n">MixtureModelClassifier</span></a><span class="p">(</span><span class="n">classes</span><span class="o">=</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="n">mixture_model</span><span class="o">=</span><span class="n">GaussianMixture</span><span class="p">(</span><span class="n">n_components</span><span class="o">=</span><span class="mi">5</span><span class="p">))</span>
+<span class="linenos">31</span> <span class="c1"># Initialise the query strategy.</span>
+<span class="linenos">32</span> <a href="../../api/skactiveml.pool.FourDs.html#skactiveml.pool.FourDs" title="skactiveml.pool.FourDs" class="sphx-glr-backref-module-skactiveml-pool sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">qs</span></a> <span class="o">=</span> <a href="../../api/skactiveml.pool.FourDs.html#skactiveml.pool.FourDs" title="skactiveml.pool.FourDs" class="sphx-glr-backref-module-skactiveml-pool sphx-glr-backref-type-py-class"><span class="n">FourDs</span></a><span class="p">()</span>
+<span class="linenos">33</span>
+<span class="linenos">34</span>
+<span class="linenos">35</span> <span class="c1"># Preparation for plotting.</span>
+<span class="linenos">36</span> <a href="https://matplotlib.org/stable/api/figure_api.html#matplotlib.figure.Figure" title="matplotlib.figure.Figure" class="sphx-glr-backref-module-matplotlib-figure sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">fig</span></a><span class="p">,</span> <a href="https://matplotlib.org/stable/api/_as_gen/matplotlib.axes.Axes.html#matplotlib.axes.Axes" title="matplotlib.axes.Axes" class="sphx-glr-backref-module-matplotlib-axes sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">ax</span></a> <span class="o">=</span> <a href="https://matplotlib.org/stable/api/_as_gen/matplotlib.pyplot.subplots.html#matplotlib.pyplot.subplots" title="matplotlib.pyplot.subplots" class="sphx-glr-backref-module-matplotlib-pyplot sphx-glr-backref-type-py-function"><span class="n">plt</span><span class="o">.</span><span class="n">subplots</span></a><span class="p">()</span>
+<span class="linenos">37</span> <a href="https://docs.python.org/3/library/stdtypes.html#list" title="builtins.list" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">feature_bound</span></a> <span class="o">=</span> <span class="p">[[</span><span class="nb">min</span><span class="p">(</span><a href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="numpy.ndarray" class="sphx-glr-backref-module-numpy sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">X</span></a><span class="p">[:,</span> <span class="mi">0</span><span class="p">]),</span> <span class="nb">min</span><span class="p">(</span><a href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="numpy.ndarray" class="sphx-glr-backref-module-numpy sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">X</span></a><span class="p">[:,</span> <span class="mi">1</span><span class="p">])],</span> <span class="p">[</span><span class="nb">max</span><span class="p">(</span><a href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="numpy.ndarray" class="sphx-glr-backref-module-numpy sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">X</span></a><span class="p">[:,</span> <span class="mi">0</span><span class="p">]),</span> <span class="nb">max</span><span class="p">(</span><a href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="numpy.ndarray" class="sphx-glr-backref-module-numpy sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">X</span></a><span class="p">[:,</span> <span class="mi">1</span><span class="p">])]]</span>
+<span class="linenos">38</span> <a href="https://docs.python.org/3/library/stdtypes.html#list" title="builtins.list" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">artists</span></a> <span class="o">=</span> <span class="p">[]</span>
+<span class="linenos">39</span>
+<span class="linenos">40</span> <span class="c1"># The active learning cycle:</span>
+<span class="linenos">41</span> <a href="https://docs.python.org/3/library/functions.html#int" title="builtins.int" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">n_cycles</span></a> <span class="o">=</span> <span class="mi">2</span>
+<span class="linenos">42</span> <span class="k">for</span> <a href="https://docs.python.org/3/library/functions.html#int" title="builtins.int" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">c</span></a> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><a href="https://docs.python.org/3/library/functions.html#int" title="builtins.int" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">n_cycles</span></a><span class="p">):</span>
+<span class="linenos">43</span>     <span class="c1"># Fit the classifier.</span>
+<span class="linenos">44</span>     <a href="../../api/skactiveml.classifier.MixtureModelClassifier.html#skactiveml.classifier.MixtureModelClassifier.fit" title="skactiveml.classifier.MixtureModelClassifier.fit" class="sphx-glr-backref-module-skactiveml-classifier sphx-glr-backref-type-py-method"><span class="n">clf</span><span class="o">.</span><span class="n">fit</span></a><span class="p">(</span><a href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="numpy.ndarray" class="sphx-glr-backref-module-numpy sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">X</span></a><span class="p">,</span> <a href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="numpy.ndarray" class="sphx-glr-backref-module-numpy sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">y</span></a><span class="p">)</span>
+<span class="linenos">45</span>
+<span class="linenos">46</span>     <span class="c1"># Get labeled instances.</span>
+<span class="linenos">47</span>     <a href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="numpy.ndarray" class="sphx-glr-backref-module-numpy sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">X_labeled</span></a> <span class="o">=</span> <a href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="numpy.ndarray" class="sphx-glr-backref-module-numpy sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">X</span></a><span class="p">[</span><a href="../../api/skactiveml.utils.labeled_indices.html#skactiveml.utils.labeled_indices" title="skactiveml.utils.labeled_indices" class="sphx-glr-backref-module-skactiveml-utils sphx-glr-backref-type-py-function"><span class="n">labeled_indices</span></a><span class="p">(</span><a href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="numpy.ndarray" class="sphx-glr-backref-module-numpy sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">y</span></a><span class="p">)]</span>
+<span class="linenos">48</span>
+<span class="linenos">49</span>     <span class="c1"># Query the next instance/s.</span>
+<span class="linenos">50</span>     <a href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="numpy.ndarray" class="sphx-glr-backref-module-numpy sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">query_idx</span></a> <span class="o">=</span> <a href="../../api/skactiveml.pool.FourDs.html#skactiveml.pool.FourDs.query" title="skactiveml.pool.FourDs.query" class="sphx-glr-backref-module-skactiveml-pool sphx-glr-backref-type-py-method"><span class="n">qs</span><span class="o">.</span><span class="n">query</span></a><span class="p">(</span><a href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="numpy.ndarray" class="sphx-glr-backref-module-numpy sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">X</span></a><span class="o">=</span><a href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="numpy.ndarray" class="sphx-glr-backref-module-numpy sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">X</span></a><span class="p">,</span> <a href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="numpy.ndarray" class="sphx-glr-backref-module-numpy sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">y</span></a><span class="o">=</span><a href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="numpy.ndarray" class="sphx-glr-backref-module-numpy sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">y</span></a><span class="p">,</span> <a href="../../api/skactiveml.classifier.MixtureModelClassifier.html#skactiveml.classifier.MixtureModelClassifier" title="skactiveml.classifier.MixtureModelClassifier" class="sphx-glr-backref-module-skactiveml-classifier sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">clf</span></a><span class="o">=</span><a href="../../api/skactiveml.classifier.MixtureModelClassifier.html#skactiveml.classifier.MixtureModelClassifier" title="skactiveml.classifier.MixtureModelClassifier" class="sphx-glr-backref-module-skactiveml-classifier sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">clf</span></a><span class="p">)</span>
+<span class="linenos">51</span>
+<span class="linenos">52</span>     <span class="c1"># Plot the labeled data.</span>
+<span class="linenos">53</span>     <a href="https://docs.python.org/3/library/stdtypes.html#list" title="builtins.list" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">coll_old</span></a> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><a href="https://matplotlib.org/stable/api/_as_gen/matplotlib.axes.Axes.html#matplotlib.axes.Axes" title="matplotlib.axes.Axes" class="sphx-glr-backref-module-matplotlib-axes sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">ax</span></a><span class="o">.</span><span class="n">collections</span><span class="p">)</span>
+<span class="linenos">54</span>     <a href="https://matplotlib.org/stable/api/text_api.html#matplotlib.text.Text" title="matplotlib.text.Text" class="sphx-glr-backref-module-matplotlib-text sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">title</span></a> <span class="o">=</span> <a href="https://matplotlib.org/stable/api/_as_gen/matplotlib.axes.Axes.text.html#matplotlib.axes.Axes.text" title="matplotlib.axes.Axes.text" class="sphx-glr-backref-module-matplotlib-axes sphx-glr-backref-type-py-method"><span class="n">ax</span><span class="o">.</span><span class="n">text</span></a><span class="p">(</span>
+<span class="linenos">55</span>         <span class="mf">0.5</span><span class="p">,</span> <span class="mf">1.05</span><span class="p">,</span> <span class="sa">f</span><span class="s2">&quot;Decision boundary after acquring </span><span class="si">{</span><a href="https://docs.python.org/3/library/functions.html#int" title="builtins.int" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">c</span></a><span class="si">}</span><span class="s2"> labels&quot;</span><span class="p">,</span>
+<span class="linenos">56</span>         <span class="n">size</span><span class="o">=</span><a href="https://matplotlib.org/stable/api/matplotlib_configuration_api.html#matplotlib.RcParams" title="matplotlib.RcParams" class="sphx-glr-backref-module-matplotlib sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">plt</span><span class="o">.</span><span class="n">rcParams</span></a><span class="p">[</span><span class="s2">&quot;axes.titlesize&quot;</span><span class="p">],</span> <span class="n">ha</span><span class="o">=</span><span class="s2">&quot;center&quot;</span><span class="p">,</span>
+<span class="linenos">57</span>         <span class="n">transform</span><span class="o">=</span><a href="https://matplotlib.org/stable/api/transformations.html#matplotlib.transforms.BboxTransformTo" title="matplotlib.transforms.BboxTransformTo" class="sphx-glr-backref-module-matplotlib-transforms sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">ax</span><span class="o">.</span><span class="n">transAxes</span></a>
+<span class="linenos">58</span>     <span class="p">)</span>
+<span class="linenos">59</span>     <a href="https://matplotlib.org/stable/api/_as_gen/matplotlib.axes.Axes.html#matplotlib.axes.Axes" title="matplotlib.axes.Axes" class="sphx-glr-backref-module-matplotlib-axes sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">ax</span></a> <span class="o">=</span> <a href="../../api/skactiveml.visualization.plot_utilities.html#skactiveml.visualization.plot_utilities" title="skactiveml.visualization.plot_utilities" class="sphx-glr-backref-module-skactiveml-visualization sphx-glr-backref-type-py-function"><span class="n">plot_utilities</span></a><span class="p">(</span><a href="../../api/skactiveml.pool.FourDs.html#skactiveml.pool.FourDs" title="skactiveml.pool.FourDs" class="sphx-glr-backref-module-skactiveml-pool sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">qs</span></a><span class="p">,</span> <a href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="numpy.ndarray" class="sphx-glr-backref-module-numpy sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">X</span></a><span class="o">=</span><a href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="numpy.ndarray" class="sphx-glr-backref-module-numpy sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">X</span></a><span class="p">,</span> <a href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="numpy.ndarray" class="sphx-glr-backref-module-numpy sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">y</span></a><span class="o">=</span><a href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="numpy.ndarray" class="sphx-glr-backref-module-numpy sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">y</span></a><span class="p">,</span> <a href="../../api/skactiveml.classifier.MixtureModelClassifier.html#skactiveml.classifier.MixtureModelClassifier" title="skactiveml.classifier.MixtureModelClassifier" class="sphx-glr-backref-module-skactiveml-classifier sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">clf</span></a><span class="o">=</span><a href="../../api/skactiveml.classifier.MixtureModelClassifier.html#skactiveml.classifier.MixtureModelClassifier" title="skactiveml.classifier.MixtureModelClassifier" class="sphx-glr-backref-module-skactiveml-classifier sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">clf</span></a><span class="p">,</span>
+<span class="linenos">60</span>                         <span class="n">candidates</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">res</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span>
+<span class="linenos">61</span>                         <a href="https://docs.python.org/3/library/stdtypes.html#list" title="builtins.list" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">feature_bound</span></a><span class="o">=</span><a href="https://docs.python.org/3/library/stdtypes.html#list" title="builtins.list" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">feature_bound</span></a><span class="p">,</span> <a href="https://matplotlib.org/stable/api/_as_gen/matplotlib.axes.Axes.html#matplotlib.axes.Axes" title="matplotlib.axes.Axes" class="sphx-glr-backref-module-matplotlib-axes sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">ax</span></a><span class="o">=</span><a href="https://matplotlib.org/stable/api/_as_gen/matplotlib.axes.Axes.html#matplotlib.axes.Axes" title="matplotlib.axes.Axes" class="sphx-glr-backref-module-matplotlib-axes sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">ax</span></a><span class="p">)</span>
+<span class="linenos">62</span>     <a href="https://matplotlib.org/stable/api/_as_gen/matplotlib.axes.Axes.scatter.html#matplotlib.axes.Axes.scatter" title="matplotlib.axes.Axes.scatter" class="sphx-glr-backref-module-matplotlib-axes sphx-glr-backref-type-py-method"><span class="n">ax</span><span class="o">.</span><span class="n">scatter</span></a><span class="p">(</span><a href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="numpy.ndarray" class="sphx-glr-backref-module-numpy sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">X</span></a><span class="p">[:,</span> <span class="mi">0</span><span class="p">],</span> <a href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="numpy.ndarray" class="sphx-glr-backref-module-numpy sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">X</span></a><span class="p">[:,</span> <span class="mi">1</span><span class="p">],</span> <a href="https://docs.python.org/3/library/functions.html#int" title="builtins.int" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">c</span></a><span class="o">=</span><a href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="numpy.ndarray" class="sphx-glr-backref-module-numpy sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">y_true</span></a><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="s2">&quot;coolwarm&quot;</span><span class="p">,</span> <span class="n">marker</span><span class="o">=</span><span class="s2">&quot;.&quot;</span><span class="p">,</span>
+<span class="linenos">63</span>                <span class="n">zorder</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+<span class="linenos">64</span>     <a href="https://matplotlib.org/stable/api/_as_gen/matplotlib.axes.Axes.scatter.html#matplotlib.axes.Axes.scatter" title="matplotlib.axes.Axes.scatter" class="sphx-glr-backref-module-matplotlib-axes sphx-glr-backref-type-py-method"><span class="n">ax</span><span class="o">.</span><span class="n">scatter</span></a><span class="p">(</span><a href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="numpy.ndarray" class="sphx-glr-backref-module-numpy sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">X_labeled</span></a><span class="p">[:,</span> <span class="mi">0</span><span class="p">],</span> <a href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="numpy.ndarray" class="sphx-glr-backref-module-numpy sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">X_labeled</span></a><span class="p">[:,</span> <span class="mi">1</span><span class="p">],</span> <a href="https://docs.python.org/3/library/functions.html#int" title="builtins.int" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">c</span></a><span class="o">=</span><span class="s2">&quot;grey&quot;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">.8</span><span class="p">,</span>
+<span class="linenos">65</span>                <span class="n">marker</span><span class="o">=</span><span class="s2">&quot;.&quot;</span><span class="p">,</span> <span class="n">s</span><span class="o">=</span><span class="mi">300</span><span class="p">)</span>
+<span class="linenos">66</span>     <a href="https://matplotlib.org/stable/api/_as_gen/matplotlib.axes.Axes.html#matplotlib.axes.Axes" title="matplotlib.axes.Axes" class="sphx-glr-backref-module-matplotlib-axes sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">ax</span></a> <span class="o">=</span> <a href="../../api/skactiveml.visualization.plot_decision_boundary.html#skactiveml.visualization.plot_decision_boundary" title="skactiveml.visualization.plot_decision_boundary" class="sphx-glr-backref-module-skactiveml-visualization sphx-glr-backref-type-py-function"><span class="n">plot_decision_boundary</span></a><span class="p">(</span><a href="../../api/skactiveml.classifier.MixtureModelClassifier.html#skactiveml.classifier.MixtureModelClassifier" title="skactiveml.classifier.MixtureModelClassifier" class="sphx-glr-backref-module-skactiveml-classifier sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">clf</span></a><span class="p">,</span> <a href="https://docs.python.org/3/library/stdtypes.html#list" title="builtins.list" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">feature_bound</span></a><span class="p">,</span> <a href="https://matplotlib.org/stable/api/_as_gen/matplotlib.axes.Axes.html#matplotlib.axes.Axes" title="matplotlib.axes.Axes" class="sphx-glr-backref-module-matplotlib-axes sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">ax</span></a><span class="o">=</span><a href="https://matplotlib.org/stable/api/_as_gen/matplotlib.axes.Axes.html#matplotlib.axes.Axes" title="matplotlib.axes.Axes" class="sphx-glr-backref-module-matplotlib-axes sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">ax</span></a><span class="p">)</span>
+<span class="linenos">67</span>
+<span class="linenos">68</span>     <a href="https://docs.python.org/3/library/stdtypes.html#list" title="builtins.list" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">coll_new</span></a> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><a href="https://matplotlib.org/stable/api/_as_gen/matplotlib.axes.Axes.html#matplotlib.axes.Axes" title="matplotlib.axes.Axes" class="sphx-glr-backref-module-matplotlib-axes sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">ax</span></a><span class="o">.</span><span class="n">collections</span><span class="p">)</span>
+<span class="linenos">69</span>     <a href="https://docs.python.org/3/library/stdtypes.html#list" title="builtins.list" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">coll_new</span></a><span class="o">.</span><span class="n">append</span><span class="p">(</span><a href="https://matplotlib.org/stable/api/text_api.html#matplotlib.text.Text" title="matplotlib.text.Text" class="sphx-glr-backref-module-matplotlib-text sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">title</span></a><span class="p">)</span>
+<span class="linenos">70</span>     <a href="https://docs.python.org/3/library/stdtypes.html#list" title="builtins.list" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">artists</span></a><span class="o">.</span><span class="n">append</span><span class="p">([</span><span class="n">x</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <a href="https://docs.python.org/3/library/stdtypes.html#list" title="builtins.list" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">coll_new</span></a> <span class="k">if</span> <span class="p">(</span><span class="n">x</span> <span class="ow">not</span> <span class="ow">in</span> <a href="https://docs.python.org/3/library/stdtypes.html#list" title="builtins.list" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">coll_old</span></a><span class="p">)])</span>
+<span class="linenos">71</span>
+<span class="linenos">72</span>     <span class="c1"># Label the queried instances.</span>
+<span class="linenos">73</span>     <a href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="numpy.ndarray" class="sphx-glr-backref-module-numpy sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">y</span></a><span class="p">[</span><a href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="numpy.ndarray" class="sphx-glr-backref-module-numpy sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">query_idx</span></a><span class="p">]</span> <span class="o">=</span> <a href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="numpy.ndarray" class="sphx-glr-backref-module-numpy sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">y_true</span></a><span class="p">[</span><a href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="numpy.ndarray" class="sphx-glr-backref-module-numpy sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">query_idx</span></a><span class="p">]</span>
+<span class="linenos">74</span>
+<span class="linenos">75</span> <a href="https://matplotlib.org/stable/api/_as_gen/matplotlib.animation.ArtistAnimation.html#matplotlib.animation.ArtistAnimation" title="matplotlib.animation.ArtistAnimation" class="sphx-glr-backref-module-matplotlib-animation sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">ani</span></a> <span class="o">=</span> <a href="https://matplotlib.org/stable/api/_as_gen/matplotlib.animation.ArtistAnimation.html#matplotlib.animation.ArtistAnimation" title="matplotlib.animation.ArtistAnimation" class="sphx-glr-backref-module-matplotlib-animation sphx-glr-backref-type-py-class"><span class="n">animation</span><span class="o">.</span><span class="n">ArtistAnimation</span></a><span class="p">(</span><a href="https://matplotlib.org/stable/api/figure_api.html#matplotlib.figure.Figure" title="matplotlib.figure.Figure" class="sphx-glr-backref-module-matplotlib-figure sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">fig</span></a><span class="p">,</span> <a href="https://docs.python.org/3/library/stdtypes.html#list" title="builtins.list" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">artists</span></a><span class="p">,</span> <span class="n">interval</span><span class="o">=</span><span class="mi">1000</span><span class="p">,</span> <span class="n">blit</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="sphx-glr-animation docutils container">
+<link rel="stylesheet"
+href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+<script language="javascript">
+  function isInternetExplorer() {
+    ua = navigator.userAgent;
+    /* MSIE used to detect old browsers and Trident used to newer ones*/
+    return ua.indexOf("MSIE ") > -1 || ua.indexOf("Trident/") > -1;
+  }
+
+  /* Define the Animation class */
+  function Animation(frames, img_id, slider_id, interval, loop_select_id){
+    this.img_id = img_id;
+    this.slider_id = slider_id;
+    this.loop_select_id = loop_select_id;
+    this.interval = interval;
+    this.current_frame = 0;
+    this.direction = 0;
+    this.timer = null;
+    this.frames = new Array(frames.length);
+
+    for (var i=0; i<frames.length; i++)
+    {
+     this.frames[i] = new Image();
+     this.frames[i].src = frames[i];
+    }
+    var slider = document.getElementById(this.slider_id);
+    slider.max = this.frames.length - 1;
+    if (isInternetExplorer()) {
+        // switch from oninput to onchange because IE <= 11 does not conform
+        // with W3C specification. It ignores oninput and onchange behaves
+        // like oninput. In contrast, Microsoft Edge behaves correctly.
+        slider.setAttribute('onchange', slider.getAttribute('oninput'));
+        slider.setAttribute('oninput', null);
+    }
+    this.set_frame(this.current_frame);
+  }
+
+  Animation.prototype.get_loop_state = function(){
+    var button_group = document[this.loop_select_id].state;
+    for (var i = 0; i < button_group.length; i++) {
+        var button = button_group[i];
+        if (button.checked) {
+            return button.value;
+        }
+    }
+    return undefined;
+  }
+
+  Animation.prototype.set_frame = function(frame){
+    this.current_frame = frame;
+    document.getElementById(this.img_id).src =
+            this.frames[this.current_frame].src;
+    document.getElementById(this.slider_id).value = this.current_frame;
+  }
+
+  Animation.prototype.next_frame = function()
+  {
+    this.set_frame(Math.min(this.frames.length - 1, this.current_frame + 1));
+  }
+
+  Animation.prototype.previous_frame = function()
+  {
+    this.set_frame(Math.max(0, this.current_frame - 1));
+  }
+
+  Animation.prototype.first_frame = function()
+  {
+    this.set_frame(0);
+  }
+
+  Animation.prototype.last_frame = function()
+  {
+    this.set_frame(this.frames.length - 1);
+  }
+
+  Animation.prototype.slower = function()
+  {
+    this.interval /= 0.7;
+    if(this.direction > 0){this.play_animation();}
+    else if(this.direction < 0){this.reverse_animation();}
+  }
+
+  Animation.prototype.faster = function()
+  {
+    this.interval *= 0.7;
+    if(this.direction > 0){this.play_animation();}
+    else if(this.direction < 0){this.reverse_animation();}
+  }
+
+  Animation.prototype.anim_step_forward = function()
+  {
+    this.current_frame += 1;
+    if(this.current_frame < this.frames.length){
+      this.set_frame(this.current_frame);
+    }else{
+      var loop_state = this.get_loop_state();
+      if(loop_state == "loop"){
+        this.first_frame();
+      }else if(loop_state == "reflect"){
+        this.last_frame();
+        this.reverse_animation();
+      }else{
+        this.pause_animation();
+        this.last_frame();
+      }
+    }
+  }
+
+  Animation.prototype.anim_step_reverse = function()
+  {
+    this.current_frame -= 1;
+    if(this.current_frame >= 0){
+      this.set_frame(this.current_frame);
+    }else{
+      var loop_state = this.get_loop_state();
+      if(loop_state == "loop"){
+        this.last_frame();
+      }else if(loop_state == "reflect"){
+        this.first_frame();
+        this.play_animation();
+      }else{
+        this.pause_animation();
+        this.first_frame();
+      }
+    }
+  }
+
+  Animation.prototype.pause_animation = function()
+  {
+    this.direction = 0;
+    if (this.timer){
+      clearInterval(this.timer);
+      this.timer = null;
+    }
+  }
+
+  Animation.prototype.play_animation = function()
+  {
+    this.pause_animation();
+    this.direction = 1;
+    var t = this;
+    if (!this.timer) this.timer = setInterval(function() {
+        t.anim_step_forward();
+    }, this.interval);
+  }
+
+  Animation.prototype.reverse_animation = function()
+  {
+    this.pause_animation();
+    this.direction = -1;
+    var t = this;
+    if (!this.timer) this.timer = setInterval(function() {
+        t.anim_step_reverse();
+    }, this.interval);
+  }
+</script>
+
+<style>
+.animation {
+    display: inline-block;
+    text-align: center;
+}
+input[type=range].anim-slider {
+    width: 374px;
+    margin-left: auto;
+    margin-right: auto;
+}
+.anim-buttons {
+    margin: 8px 0px;
+}
+.anim-buttons button {
+    padding: 0;
+    width: 36px;
+}
+.anim-state label {
+    margin-right: 8px;
+}
+.anim-state input {
+    margin: 0;
+    vertical-align: middle;
+}
+</style>
+
+<div class="animation">
+  <img id="_anim_img3fad716c7dec40488f0dca8e634dbb83">
+  <div class="anim-controls">
+    <input id="_anim_slider3fad716c7dec40488f0dca8e634dbb83" type="range" class="anim-slider"
+           name="points" min="0" max="1" step="1" value="0"
+           oninput="anim3fad716c7dec40488f0dca8e634dbb83.set_frame(parseInt(this.value));">
+    <div class="anim-buttons">
+      <button title="Decrease speed" aria-label="Decrease speed" onclick="anim3fad716c7dec40488f0dca8e634dbb83.slower()">
+          <i class="fa fa-minus"></i></button>
+      <button title="First frame" aria-label="First frame" onclick="anim3fad716c7dec40488f0dca8e634dbb83.first_frame()">
+        <i class="fa fa-fast-backward"></i></button>
+      <button title="Previous frame" aria-label="Previous frame" onclick="anim3fad716c7dec40488f0dca8e634dbb83.previous_frame()">
+          <i class="fa fa-step-backward"></i></button>
+      <button title="Play backwards" aria-label="Play backwards" onclick="anim3fad716c7dec40488f0dca8e634dbb83.reverse_animation()">
+          <i class="fa fa-play fa-flip-horizontal"></i></button>
+      <button title="Pause" aria-label="Pause" onclick="anim3fad716c7dec40488f0dca8e634dbb83.pause_animation()">
+          <i class="fa fa-pause"></i></button>
+      <button title="Play" aria-label="Play" onclick="anim3fad716c7dec40488f0dca8e634dbb83.play_animation()">
+          <i class="fa fa-play"></i></button>
+      <button title="Next frame" aria-label="Next frame" onclick="anim3fad716c7dec40488f0dca8e634dbb83.next_frame()">
+          <i class="fa fa-step-forward"></i></button>
+      <button title="Last frame" aria-label="Last frame" onclick="anim3fad716c7dec40488f0dca8e634dbb83.last_frame()">
+          <i class="fa fa-fast-forward"></i></button>
+      <button title="Increase speed" aria-label="Increase speed" onclick="anim3fad716c7dec40488f0dca8e634dbb83.faster()">
+          <i class="fa fa-plus"></i></button>
+    </div>
+    <form title="Repetition mode" aria-label="Repetition mode" action="#n" name="_anim_loop_select3fad716c7dec40488f0dca8e634dbb83"
+          class="anim-state">
+      <input type="radio" name="state" value="once" id="_anim_radio1_3fad716c7dec40488f0dca8e634dbb83"
+             >
+      <label for="_anim_radio1_3fad716c7dec40488f0dca8e634dbb83">Once</label>
+      <input type="radio" name="state" value="loop" id="_anim_radio2_3fad716c7dec40488f0dca8e634dbb83"
+             checked>
+      <label for="_anim_radio2_3fad716c7dec40488f0dca8e634dbb83">Loop</label>
+      <input type="radio" name="state" value="reflect" id="_anim_radio3_3fad716c7dec40488f0dca8e634dbb83"
+             >
+      <label for="_anim_radio3_3fad716c7dec40488f0dca8e634dbb83">Reflect</label>
+    </form>
+  </div>
+</div>
+
+
+<script language="javascript">
+  /* Instantiate the Animation class. */
+  /* The IDs given should match those used in the template above. */
+  (function() {
+    var img_id = "_anim_img3fad716c7dec40488f0dca8e634dbb83";
+    var slider_id = "_anim_slider3fad716c7dec40488f0dca8e634dbb83";
+    var loop_select_id = "_anim_loop_select3fad716c7dec40488f0dca8e634dbb83";
+    var frames = new Array(2);
+
+  frames[0] = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAnwAAAHeCAYAAAAB0dYuAAAAOXRFWHRTb2Z0d2FyZQBNYXRwbG90\
+bGliIHZlcnNpb24zLjcuMiwgaHR0cHM6Ly9tYXRwbG90bGliLm9yZy8pXeV/AAAACXBIWXMAAA9h\
+AAAPYQGoP6dpAABG1ElEQVR4nO3deXhTBdr+8Tvd0gJt2LpCgbIIsggIWEFU0I5VUcRBVAZlEcHh\
+ByqC41hHRcdxOiOijIIgLoAgrwsK+KKiyDpKFUFRREFBdmgLAg2U0tLm/P7gbSR0oWtOcvL9XFcu\
+yek5OU+atL19nnNObIZhGAIAAIBlBZldAAAAAGoXgQ8AAMDiCHwAAAAWR+ADAACwOAIfAACAxRH4\
+AAAALI7ABwAAYHEEPgAAAIsj8AEAAFgcgQ8AAMDiCHwAAAAWR+ADAACwOAIfAACAxRH4AAAALI7A\
+BwAAYHEEPgAAAIsj8AEAAFgcgQ8AAMDiCHwAAAAWR+ADAACwOAIfAACAxRH4AAAALI7ABwAAYHEE\
+PgAAAIsj8MHydu3aJZvNpjlz5lRquz59+qhPnz61UlN55syZI5vNpg0bNnh93zXBrO9bTSgsLNRD\
+Dz2kxMREBQUFacCAAWaX5HdWr14tm82m1atXm11KpQ0fPlwtWrSo0rY2m03jxo2rsVqq+nsLKAuB\
+D7WuOMAU38LDw5WQkKDU1FS98MILOn78uNklApKk119/XZMnT9Ytt9yiuXPn6oEHHtCPP/6oJ554\
+Qrt27TK7PFRAfn6+/vrXvyohIUERERFKTk7W8uXLzS4LMF2I2QUgcPz9739XUlKSTp8+rczMTK1e\
+vVrjx4/Xc889pw8++EAXXXRRrey3efPmysvLU2hoaKW2+/TTT2ulHviulStXqkmTJnr++efdyxYu\
+XKgnn3xSffr0qXL3J5BcccUVysvLU1hYmCn7Hz58uBYuXKjx48erTZs2mjNnjq6//nqtWrVKvXv3\
+NqUmwBcQ+OA11113nbp37+6+n5aWppUrV+qGG25Q//799dNPPykiIqLG91vcVawss/5g4XeFhYVy\
+uVxeey2ys7NVv359r+wrNzdXdevW9cq+vOHUqVMKCwtTUFBQlX7easL69ev11ltvafLkyXrwwQcl\
+SUOHDlXHjh310EMPad26dabUBfgCRrow1VVXXaXHHntMu3fv1vz58z2+tnXrVt1yyy1q2LChwsPD\
+1b17d33wwQclHuPYsWN64IEH1KJFC9ntdjVt2lRDhw7V4cOHJZV+LExmZqZGjBihpk2bym63Kz4+\
+XjfddJPH2K60Y9Gys7M1cuRIxcbGKjw8XJ07d9bcuXM91ine37PPPqtZs2apVatWstvt6tGjh77+\
++usKf29Onjype+65R40aNVJUVJSGDh2qo0ePlljvpZdeUocOHWS325WQkKCxY8fq2LFjHuu0aNFC\
+w4cPL7Htuc+x+Pird955R08//bSaNm2q8PBwXX311dq+fXuJ7YufX0REhC655BL997//LbFOQUGB\
+Hn/8cXXr1k0Oh0N169bV5ZdfrlWrVnmsd/b3berUqe7v2/r161W3bl3df//9JR573759Cg4OVnp6\
+ehnfxTOeffZZ9erVS40aNVJERIS6deumhQsXltj3qlWrtGXLFvfhB3PmzNGgQYMkSX379nUvP/v4\
+tI8//liXX3656tatq8jISPXr109btmzx2P/w4cNVr1497dixQ9dff70iIyM1ZMiQMuvdvXu3/t//\
++39q27atIiIi1KhRIw0aNKjUsfL53v/F36cBAwaobt26iomJ0QMPPKBPPvmkxHOp7Pvkrbfe0qOP\
+PqomTZqoTp06cjqdpR7D16dPH3Xs2FE//vij+vbtqzp16qhJkyZ65plnSn3u/fv3P2+tpVm4cKGC\
+g4M1evRo97Lw8HCNHDlSGRkZ2rt3b7nbl+Z8751zvfnmm2rbtq3Cw8PVrVs3rV27tsQ6+/fv1113\
+3aXY2FjZ7XZ16NBBr7/++nlrqcjvLaAsdPhgujvvvFOPPPKIPv30U40aNUqStGXLFl122WVq0qSJ\
+Hn74YdWtW1fvvPOOBgwYoPfee08333yzJOnEiRO6/PLL9dNPP+muu+7SxRdfrMOHD+uDDz7Qvn37\
+1Lhx41L3OXDgQG3ZskX33nuvWrRooezsbC1fvlx79uwpc2yXl5enPn36aPv27Ro3bpySkpL07rvv\
+avjw4Tp27FiJQLJgwQIdP35c99xzj2w2m5555hn98Y9/1K+//lqh8fK4ceNUv359PfHEE9q2bZtm\
+zJih3bt3u/+gStITTzyhJ598UikpKRozZox7va+//lpffPFFpcfYxf71r38pKChIDz74oHJycvTM\
+M89oyJAh+uqrr9zrvPbaa7rnnnvUq1cvjR8/Xr/++qv69++vhg0bKjEx0b2e0+nUq6++qsGDB2vU\
+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\
+qPR+77zzTn366aeaOnWqGjVq5P5elCc4OFg2m01FRUXuZbt27dLixYsrtM/ia+Wd+7xSU1MVFRWl\
+f/7znx6vU7Gz36eVFRwcXOL9++KLL3o8B6li7//rr79eBw4c8LiUyMmTJ0sdKdb0+6SyUlNTtX//\
+fo/LL506dUqvvPJKhba/5ZZbVFRU5PHc8vPzNXv2bCUnJ1f6DN3KvncyMjI8jsHbu3evlixZomuu\
+uUbBwcEKDg7WwIED9d5775Ua1Mt7z1T19xZQjA4fvObjjz/W1q1bVVhYqKysLK1cuVLLly9X8+bN\
+9cEHH3hcrHX69Onq3bu3OnXqpFGjRqlly5bKyspSRkaG9u3bp++++06S9Je//EULFy7UoEGDdNdd\
+d6lbt246cuSIPvjgA82cOdOj01Ts559/1tVXX61bb71V7du3V0hIiBYtWqSsrCzdfvvtZdY/evRo\
+vfzyyxo+fLg2btyoFi1aaOHChfriiy80depURUZG1uj3q6CgwF3ntm3b9NJLL6l3797uA9qjo6OV\
+lpamJ598Utdee6369+/vXq9Hjx4eB8jffffdWrhwoa699lrdeuut2rFjh+bPn+/uUlVWaGio/vGP\
+f+iee+7RVVddpdtuu007d+7U7NmzS3SCbrjhBr3//vu6+eab1a9fP+3cuVMzZ85U+/btdeLEiUrt\
+909/+pMeeughLVq0SGPGjKnQZWf69eun5557Ttdee63+9Kc/KTs7W9OnT1fr1q09jh8rS5cuXRQc\
+HKx///vfysnJkd1u11VXXaWYmBjNmDFDd955py6++GLdfvvtio6O1p49e/Thhx/qsssu07Rp0yr1\
+/IrdcMMNmjdvnhwOh9q3b6+MjAx99tlnatSokcd6FXn/jxo1StOmTdPQoUO1ceNGxcfHa968eaVe\
+Fqam3yeVdc8992jatGkaPHiw7r//fsXHx7uP1ZTOf8xlcnKyBg0apLS0NGVnZ6t169aaO3eudu3a\
+pddee63S9VT2vdOxY0elpqZ6XJZFkp588kn3Ov/617+0atUqJScna9SoUWrfvr2OHDmib775Rp99\
+9pmOHDlSai1V/b0FuJlxajACS/FlRopvYWFhRlxcnPGHP/zB+M9//uO+nMm5duzYYQwdOtSIi4sz\
+QkNDjSZNmhg33HCDsXDhQo/1fvvtN2PcuHFGkyZNjLCwMKNp06bGsGHD3Jc9OPfyBocPHzbGjh1r\
+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\
+"
+  frames[1] = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAnwAAAHeCAYAAAAB0dYuAAAAOXRFWHRTb2Z0d2FyZQBNYXRwbG90\
+bGliIHZlcnNpb24zLjcuMiwgaHR0cHM6Ly9tYXRwbG90bGliLm9yZy8pXeV/AAAACXBIWXMAAA9h\
+AAAPYQGoP6dpAAA890lEQVR4nO3de1yUZf7/8fcAMhwEPHEGz25mFh4z7SAmhamZbZm5fgPdUjNt\
+M93a7Ldl5bZ80ywrTXNLLctvB0szK808bkWllltampqKJyBTB0EBZe7fHy6TEwdBgRsvX8/H437o\
+fc11z/25Z27gPdd9GIdlWZYAAABgLB+7CwAAAED1IvABAAAYjsAHAABgOAIfAACA4Qh8AAAAhiPw\
+AQAAGI7ABwAAYDgCHwAAgOEIfAAAAIYj8AEAABiOwAcAAGA4Ah8AAIDhCHwAAACGI/ABAAAYjsAH\
+AABgOAIfAACA4Qh8AAAAhiPwAQAAGI7ABwAAYDgCHwAAgOEIfAAAAIYj8AEAABiOwAcAAGA4Ah8A\
+AIDhCHww3q5du+RwODR37txKLZeYmKjExMRqqak8c+fOlcPh0Pr162t83VXBrtetKpw8eVIPPvig\
+4uPj5ePjo/79+9td0nln9erVcjgcWr16td2lVNpjjz0mh8NxVss2bdpUffv2rdJ6HA6HHnvssSp9\
+Tly4CHyodsUBpngKCAhQTEyMkpOT9fzzz+vo0aN2lwhIkmbPnq3Jkyfr1ltv1auvvqr7779fP/zw\
+gx577DHt2rXL7vJwBrm5uZowYYJ69eqlBg0anNUHPcBUfnYXgAvHE088oWbNmunEiRPKzMzU6tWr\
+NWbMGD3zzDNavHixLrvssmpZb5MmTXT8+HHVqVOnUst98skn1VIPaq+VK1cqNjZWzz77rKdtwYIF\
+evzxx5WYmKimTZvaV9x54pprrtHx48fl7+9f4+s+ePCgnnjiCTVu3FgJCQnn5SgjUF0IfKgxN9xw\
+gzp16uSZHz9+vFauXKm+ffuqX79++vHHHxUYGFjl6y0eVawsO/5gwdvJkyfldrtr7L3Izs5WvXr1\
+amRdeXl5Cg4OrpF11YT8/Hz5+/vLx8fnrH7eqkJ0dLQOHDigqKgorV+/Xp07d7alDqA24pAubHXt\
+tdfqkUce0e7du/X66697PbZlyxbdeuutatCggQICAtSpUyctXry4xHMcOXJE999/v5o2bSqn06m4\
+uDilpKTo4MGDkko/hy8zM1NDhw5VXFycnE6noqOjddNNN3kdtivtXLTs7GzdeeedioyMVEBAgBIS\
+EvTqq6969Sle39NPP61Zs2apRYsWcjqd6ty5s9atW1fh1+bYsWMaMWKEGjZsqNDQUKWkpOjw4cMl\
++r344ou65JJL5HQ6FRMTo1GjRunIkSNefZo2baohQ4aUWPb321h8/tXbb7+tJ598UnFxcQoICFDP\
+nj21ffv2EssXb19gYKAuv/xy/fvf/y7Rp7CwUI8++qg6duyosLAwBQcH6+qrr9aqVau8+p3+uk2d\
+OtXzun399dcKDg7WfffdV+K59+7dK19fX6WlpZXxKp7y9NNPq1u3bmrYsKECAwPVsWNHLViwoMS6\
+V61apc2bN3tOP5g7d64GDBggSerRo4en/fSRo48//lhXX321goODFRISoj59+mjz5s1e6x8yZIjq\
+1q2rHTt2qHfv3goJCdHgwYPLrHf37t265557dNFFFykwMFANGzbUgAEDSj2sfKb9v/h16t+/v4KD\
+gxUREaH7779fy5YtK7Etld1P3nzzTf39739XbGysgoKClJOTU+o5fImJiWrbtq1++OEH9ejRQ0FB\
+QYqNjdWkSZNK3fZ+/fqdsdbSOJ1ORUVFldunsubMmaNrr71WERERcjqdatOmjWbMmFFm/08++UTt\
+2rVTQECA2rRpo/fee69EnyNHjmjMmDGKj4+X0+lUy5Yt9dRTT8ntdpdby9GjRzVmzBjPex0REaHr\
+rrtO33zzzTlvJ8zHCB9sd8cdd+jhhx/WJ598omHDhkmSNm/erCuvvFKxsbF66KGHFBwcrLffflv9\
++/fXu+++q5tvvlnSqXN2rr76av3444/685//rA4dOujgwYNavHix9u7dq0aNGpW6zltuuUWbN2/W\
+vffeq6ZNmyo7O1vLly9XRkZGmYftjh8/rsTERG3fvl2jR49Ws2bN9M4772jIkCE6cuRIiUAyf/58\
+HT16VCNGjJDD4dCkSZP0xz/+UT///HOFDi+PHj1a9erV02OPPaatW7dqxowZ2r17t+cPqnTqJPPH\
+H39cSUlJGjlypKffunXr9Pnnn1f6MHax//3f/5WPj4/++te/yuVyadKkSRo8eLC++uorT59XXnlF\
+I0aMULdu3TRmzBj9/PPP6tevnxo0aKD4+HhPv5ycHL388ssaNGiQhg0bpqNHj+qVV15RcnKyvv76\
+a7Vr185r3XPmzFF+fr6GDx8up9Opxo0b6+abb9Zbb72lZ555Rr6+vp6+//d//yfLssoNT5L03HPP\
+qV+/fho8eLAKCwv15ptvasCAAVqyZIn69Omj8PBwzZs3T08++aRyc3M9AbJVq1b6y1/+oueff14P\
+P/ywLr74Ykny/Dtv3jylpqYqOTlZTz31lI4dO6YZM2boqquu0rfffuu1L508eVLJycm66qqr9PTT\
+TysoKKjMetetW6cvvvhCt99+u+Li4rRr1y7NmDFDiYmJ+uGHHzzLVmT/P378uHr27KmMjAz95S9/\
+UUxMjObNm6eVK1eW+5pVxMSJE+Xv76+//vWvKigoKHck9vDhw+rVq5f++Mc/6rbbbtOCBQv0t7/9\
+TZdeeqluuOEGSadGPa+99lodOHBA9913n6KiojR//vwSHw5q0owZM3TJJZeoX79+8vPz0wcffKB7\
+7rlHbrdbo0aN8uq7bds2DRw4UHfffbdSU1M1Z84cDRgwQEuXLtV1110n6dQHue7du2vfvn0aMWKE\
+GjdurC+++ELjx4/XgQMHNHXq1DJrufvuu7VgwQKNHj1abdq00a+//qrPPvtMP/74ozp06FCdLwNM\
+YAHVbM6cOZYka926dWX2CQsLs9q3b++Z79mzp3XppZda+fn5nja3221169bNatWqlaft0UcftSRZ\
+7733XonndLvdlmVZ1s6dOy1J1pw5cyzLsqzDhw9bkqzJkyeXW3f37t2t7t27e+anTp1qSbJef/11\
+T1thYaHVtWtXq27dulZOTo7X+ho2bGgdOnTI0/f999+3JFkffPBBuestfr06duxoFRYWetonTZpk\
+SbLef/99y7IsKzs72/L397euv/56q6ioyNNv2rRpliRr9uzZnrYmTZpYqampZ9zGVatWWZKsiy++\
+2CooKPC0P/fcc5Yk6/vvv/dsd0REhNWuXTuvfrNmzbIkeT3nyZMnvfpY1qn3IDIy0vrzn//saSt+\
+3UJDQ63s7Gyv/suWLbMkWR9//LFX+2WXXea1rrIcO3bMa76wsNBq27atde2115Z4PS655BKvtnfe\
+eceSZK1atcqr/ejRo1a9evWsYcOGebVnZmZaYWFhXu2pqamWJOuhhx46Y62l1WtZlpWenm5Jsl57\
+7TVPW0X2/+L99u233/Y8lpeXZ7Vs2bLEdlV2P2nevHmJWosfO/15u3fvXqL2goICKyoqyrrllls8\
+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\
+8vLy9P3332vBggXatWtXqbeTOnr0qOLi4nTrrbcqISFBdevW1aeffqp169Z5jQQDZbLj0mBcWIpv\
+M1I8+fv7W1FRUdZ1111nPffcc57bmfzejh07rJSUFCsqKsqqU6eOFRsba/Xt29dasGCBV79ff/3V\
+Gj16tBUbG2v5+/tbcXFxVmpqqnXw4EHLskreluXgwYPWqFGjrNatW1vBwcFWWFiY1aVLF6/bVlhW\
+yVtRWJZlZWVlWUOHDrUaNWpk+fv7W5deemmJ2z4Ur6+0277od7dZKO/1WrNmjTV8+HCrfv36Vt26\
+da3Bgwdbv/76a4n+06ZNs1q3bm3VqVPHioyMtEaOHGkdPny4RL8pU6ZYsbGxltPptK688kpr/fr1\
+Zd5u45133il1m36/rS+++KLVrFkzy+l0Wp06dbLWrl1b4jndbrf1z3/+02rSpInldDqt9u3bW0uW\
+LLFSU1OtJk2aVOh1O13v3r0tSdYXX3xRbr/TvfLKK1arVq0sp9NptW7d2pozZ06pt+Ao7bYslmVZ\
+//rXv6zmzZtbvr6+JW4PsmrVKis5OdkKCwuzAgICrBYtWlhDhgyx1q9f7+mTmppqBQcHV7jew4cP\
+e/azunXrWsnJydaWLVtKvW3KmfZ/y7Ks3bt3W/369bOCgoKsRo0aWffdd5+1dOnSUm91ci77yemP\
+/f62LKW9rr/fByzLsn7++WerT58+VmBgoBUeHm6NGzfOevfddy1J1pdffnnG16749iilTTt37ix3\
+2dL2icWLF1uXXXaZFRAQYDVt2tR66qmnrNmzZ5d4viZNmlh9+vSxli1bZl122WWefa201+jo0aPW\
++PHjrZYtW1r+/v5Wo0aNrG7dullPP/20162YTv99UVBQYD3wwANWQkKCFRISYgUHB1sJCQnWiy++\
+eMbXBLAsy3JYVi0+YxYAfufmm2/W999/b9t5XaZYvXq1evTooVWrVpX4RpnaZurUqbr//vu1d+9e\
+xcbG2l0OcF7iHD4A540DBw7oww8/1B133GF3Kagmx48f95rPz8/XSy+9pFatWhH2gHPAOXwAar2d\
+O3fq888/18svv6w6depoxIgRdpeEavLHP/5RjRs3Vrt27eRyufT6669ry5YtXjfdBlB5BD4Atd6a\
+NWs0dOhQNW7cWK+++mq5N8jG+S05OVkvv/yy3njjDRUVFalNmzZ68803NXDgQLtLA85rnMMHAABg\
+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\
+/wHyspAcrWAyEwAAAABJRU5ErkJggg==\
+"
+
+
+    /* set a timeout to make sure all the above elements are created before
+       the object is initialized. */
+    setTimeout(function() {
+        anim3fad716c7dec40488f0dca8e634dbb83 = new Animation(frames, img_id, slider_id, 1000.0,
+                                 loop_select_id);
+    }, 0);
+  })()
+</script></div>
+<img alt="../../../_images/pool_classification_legend.png" src="../../../_images/pool_classification_legend.png" />
+<p class="rubric">References:</p>
+<p>The implementation of this strategy is based on Reitmaier and Sick<a class="footnote-reference brackets" href="#footcite-reitmaier2013let" id="id1">1</a>.</p>
+<div class="docutils container" id="id2">
+<dl class="footnote brackets">
+<dt class="label" id="footcite-reitmaier2013let"><span class="brackets"><a class="fn-backref" href="#id1">1</a></span></dt>
+<dd><p>Tobias Reitmaier and Bernhard Sick. Let us know your decision: pool-based active training of a generative classifier with the selection strategy 4ds. <em>Information Sciences</em>, 230:106–131, 2013.</p>
+</dd>
+</dl>
+</div>
+<p class="sphx-glr-timing"><strong>Total running time of the script:</strong> (0 minutes 0.465 seconds)</p>
+<div class="sphx-glr-footer sphx-glr-footer-example docutils container" id="sphx-glr-download-generated-sphinx-gallery-examples-pool-plot-fourds-density-diversity-distribution-distance-sampling-4ds-py">
+<div class="sphx-glr-download sphx-glr-download-jupyter docutils container">
+<p><a class="reference download internal" download="" href="../../../_downloads/47a47dae07e24bf12b1553517618d17a/plot-FourDs-Density-Diversity-Distribution-Distance_Sampling_%284DS%29.ipynb"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">Jupyter</span> <span class="pre">notebook:</span> <span class="pre">plot-FourDs-Density-Diversity-Distribution-Distance_Sampling_(4DS).ipynb</span></code></a></p>
+</div>
+<div class="sphx-glr-download sphx-glr-download-python docutils container">
+<p><a class="reference download internal" download="" href="../../../_downloads/08c1aa3bb5fbaf22273b099ad7618128/plot-FourDs-Density-Diversity-Distribution-Distance_Sampling_%284DS%29.py"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">Python</span> <span class="pre">source</span> <span class="pre">code:</span> <span class="pre">plot-FourDs-Density-Diversity-Distribution-Distance_Sampling_(4DS).py</span></code></a></p>
+</div>
+</div>
+<p class="sphx-glr-signature"><a class="reference external" href="https://sphinx-gallery.github.io">Gallery generated by Sphinx-Gallery</a></p>
+</section>
+
+
+            </article>
+            
+            
+            
+            <footer class="bd-footer-article">
+                <!-- Previous / next buttons -->
+<div class='prev-next-area'>
+  <a class='left-prev' id="prev-link" href="plot-UncertaintySampling-Expected_Average_Precision.html" title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+          <p class="prev-next-subtitle">previous</p>
+          <p class="prev-next-title">Expected Average Precision</p>
+      </div>
+  </a>
+  <a class='right-next' id="next-link" href="plot-MonteCarloEER-Monte-Carlo_EER_with_Log-Loss.html" title="next page">
+  <div class="prev-next-info">
+      <p class="prev-next-subtitle">next</p>
+      <p class="prev-next-title">Monte-Carlo EER with Log-Loss</p>
+  </div>
+  <i class="fa-solid fa-angle-right"></i>
+  </a>
+</div>
+            </footer>
+            
+          </div>
+          
+          
+          
+            <div class="bd-sidebar-secondary bd-toc">
+              
+<div class="toc-item">
+  
+<div id="searchbox"></div>
+</div>
+
+<div class="toc-item">
+  
+</div>
+
+<div class="toc-item">
+  
+<div class="tocsection sourcelink">
+    <a href="../../../_sources/generated/sphinx_gallery_examples/pool/plot-FourDs-Density-Diversity-Distribution-Distance_Sampling_(4DS).rst.txt">
+        <i class="fa-solid fa-file-lines"></i> Show Source
+    </a>
+</div>
+
+</div>
+
+            </div>
+          
+          
+        </div>
+        <footer class="bd-footer-content">
+          <div class="bd-footer-content__inner">
+            
+          </div>
+        </footer>
+        
+      </main>
+    </div>
+  </div>
+
+  
+    
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../../../_static/scripts/bootstrap.js?digest=796348d33e8b1d947c94"></script>
+<script src="../../../_static/scripts/pydata-sphinx-theme.js?digest=796348d33e8b1d947c94"></script>
+
+  <footer class="bd-footer"><div class="bd-footer__inner container">
+  
+  <div class="footer-item">
+    
+<p class="copyright">
+
+    &copy; Copyright 2020.<br>
+
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    <p class="theme-version">
+    Built with the
+    <a href="https://pydata-sphinx-theme.readthedocs.io/en/stable/index.html">
+        PyData Sphinx Theme
+    </a>
+    0.12.0.
+</p>
+  </div>
+  
+  <div class="footer-item">
+    
+<p class="sphinx-version">
+Created using <a href="http://sphinx-doc.org/">Sphinx</a> 5.3.0.<br>
+</p>
+
+  </div>
+  
+</div>
+  </footer>
+  </body>
+</html>
