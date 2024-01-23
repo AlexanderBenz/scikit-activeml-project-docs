@@ -1,11 +1,6 @@
-name: skactiveml-project
-    
-on: 
-  push:
-    branches:
-      - main
+on:
   repository_dispatch:
-    types: [build_docs]
+    types: [release]
 
 jobs:
   build:
@@ -30,6 +25,14 @@ jobs:
           python -m pip install --upgrade pip
           pip install -r scikit-activeml-project/requirements.txt
           pip install -r scikit-activeml-project/requirements_extra.txt
+      - name: Insert Version number and save current version
+        run: |
+          cd scikit-activeml-project
+          RELEASE_VERSION=$(git tag -l --sort=-creatordate | head -n 1)
+          echo $RELEASE_VERSION
+          sed -i -E "s/__version__ = .*/__version__ = \"$RELEASE_VERSION\"/" skactiveml/__init__.py
+          cat skactiveml/__init__.py
+          cd ..
       - name: Create documentation with sphinx
         # env:
           # N_SAMPLES: 10
@@ -44,4 +47,21 @@ jobs:
           branch: gh-pages
           folder: scikit-activeml-project/docs/_build
           target-folder: latest
+      - uses: actions/checkout@v4
+      - name: Move Version Folder
+        # cd scikit-activeml-project
+          # RELEASE_VERSION=$(git tag -l --sort=-creatordate | head -n 1)
+          # echo $RELEASE_VERSION
+          # cd ..
+        run: |
+          git checkout gh-pages
+          python .github/workflows/update_docs.py --version $RELEASE_VERSION
+      
 
+concurrency:
+  # github.workflow: name of the workflow
+  # github.event.pull_request.number || github.ref: pull request number or branch name if not a pull request
+  group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
+
+  # Cancel in-progress runs when a new workflow with the same group name is triggered
+  cancel-in-progress: true
