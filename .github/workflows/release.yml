@@ -47,10 +47,10 @@ jobs:
           branch: gh-pages
           folder: scikit-activeml-project/docs/_build
           target-folder: latest
-      - name: Move Version Folder
       - uses: actions/checkout@v4
         with:
           ref: gh-pages
+      - name: Move Version Folder
         # cd scikit-activeml-project
           # RELEASE_VERSION=$(git tag -l --sort=-creatordate | head -n 1)
           # echo $RELEASE_VERSION
