@@ -28,7 +28,7 @@ jobs:
       - name: Insert Version number and save current version
         run: |
           cd scikit-activeml-project
-          RELEASE_VERSION=$(git tag -l --sort=-creatordate | head -n 1)
+          RELEASE_VERSION=$(git ls-remote --tags --sort=-'v:refname' https://github.com/AlexanderBenz/scikit-activeml-project.git | head -n 1 | cut --delimiter='/' --fields=3)
           echo $RELEASE_VERSION
           sed -i -E "s/__version__ = .*/__version__ = \"$RELEASE_VERSION\"/" skactiveml/__init__.py
           cat skactiveml/__init__.py
