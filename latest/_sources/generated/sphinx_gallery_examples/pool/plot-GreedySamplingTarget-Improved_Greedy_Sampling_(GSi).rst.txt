@@ -314,42 +314,42 @@ Improved Greedy Sampling (GSi)
      </style>
 
      <div class="animation">
-       <img id="_anim_imgf546c4fa7c034505a1f08d8d4a80e0d7">
+       <img id="_anim_img68406446fe504ca3be0251e4852f4fd3">
        <div class="anim-controls">
-         <input id="_anim_sliderf546c4fa7c034505a1f08d8d4a80e0d7" type="range" class="anim-slider"
+         <input id="_anim_slider68406446fe504ca3be0251e4852f4fd3" type="range" class="anim-slider"
                 name="points" min="0" max="1" step="1" value="0"
-                oninput="animf546c4fa7c034505a1f08d8d4a80e0d7.set_frame(parseInt(this.value));">
+                oninput="anim68406446fe504ca3be0251e4852f4fd3.set_frame(parseInt(this.value));">
          <div class="anim-buttons">
-           <button title="Decrease speed" aria-label="Decrease speed" onclick="animf546c4fa7c034505a1f08d8d4a80e0d7.slower()">
+           <button title="Decrease speed" aria-label="Decrease speed" onclick="anim68406446fe504ca3be0251e4852f4fd3.slower()">
                <i class="fa fa-minus"></i></button>
-           <button title="First frame" aria-label="First frame" onclick="animf546c4fa7c034505a1f08d8d4a80e0d7.first_frame()">
+           <button title="First frame" aria-label="First frame" onclick="anim68406446fe504ca3be0251e4852f4fd3.first_frame()">
              <i class="fa fa-fast-backward"></i></button>
-           <button title="Previous frame" aria-label="Previous frame" onclick="animf546c4fa7c034505a1f08d8d4a80e0d7.previous_frame()">
+           <button title="Previous frame" aria-label="Previous frame" onclick="anim68406446fe504ca3be0251e4852f4fd3.previous_frame()">
                <i class="fa fa-step-backward"></i></button>
-           <button title="Play backwards" aria-label="Play backwards" onclick="animf546c4fa7c034505a1f08d8d4a80e0d7.reverse_animation()">
+           <button title="Play backwards" aria-label="Play backwards" onclick="anim68406446fe504ca3be0251e4852f4fd3.reverse_animation()">
                <i class="fa fa-play fa-flip-horizontal"></i></button>
-           <button title="Pause" aria-label="Pause" onclick="animf546c4fa7c034505a1f08d8d4a80e0d7.pause_animation()">
+           <button title="Pause" aria-label="Pause" onclick="anim68406446fe504ca3be0251e4852f4fd3.pause_animation()">
                <i class="fa fa-pause"></i></button>
-           <button title="Play" aria-label="Play" onclick="animf546c4fa7c034505a1f08d8d4a80e0d7.play_animation()">
+           <button title="Play" aria-label="Play" onclick="anim68406446fe504ca3be0251e4852f4fd3.play_animation()">
                <i class="fa fa-play"></i></button>
-           <button title="Next frame" aria-label="Next frame" onclick="animf546c4fa7c034505a1f08d8d4a80e0d7.next_frame()">
+           <button title="Next frame" aria-label="Next frame" onclick="anim68406446fe504ca3be0251e4852f4fd3.next_frame()">
                <i class="fa fa-step-forward"></i></button>
-           <button title="Last frame" aria-label="Last frame" onclick="animf546c4fa7c034505a1f08d8d4a80e0d7.last_frame()">
+           <button title="Last frame" aria-label="Last frame" onclick="anim68406446fe504ca3be0251e4852f4fd3.last_frame()">
                <i class="fa fa-fast-forward"></i></button>
-           <button title="Increase speed" aria-label="Increase speed" onclick="animf546c4fa7c034505a1f08d8d4a80e0d7.faster()">
+           <button title="Increase speed" aria-label="Increase speed" onclick="anim68406446fe504ca3be0251e4852f4fd3.faster()">
                <i class="fa fa-plus"></i></button>
          </div>
-         <form title="Repetition mode" aria-label="Repetition mode" action="#n" name="_anim_loop_selectf546c4fa7c034505a1f08d8d4a80e0d7"
+         <form title="Repetition mode" aria-label="Repetition mode" action="#n" name="_anim_loop_select68406446fe504ca3be0251e4852f4fd3"
                class="anim-state">
-           <input type="radio" name="state" value="once" id="_anim_radio1_f546c4fa7c034505a1f08d8d4a80e0d7"
+           <input type="radio" name="state" value="once" id="_anim_radio1_68406446fe504ca3be0251e4852f4fd3"
                   >
-           <label for="_anim_radio1_f546c4fa7c034505a1f08d8d4a80e0d7">Once</label>
-           <input type="radio" name="state" value="loop" id="_anim_radio2_f546c4fa7c034505a1f08d8d4a80e0d7"
+           <label for="_anim_radio1_68406446fe504ca3be0251e4852f4fd3">Once</label>
+           <input type="radio" name="state" value="loop" id="_anim_radio2_68406446fe504ca3be0251e4852f4fd3"
                   checked>
-           <label for="_anim_radio2_f546c4fa7c034505a1f08d8d4a80e0d7">Loop</label>
-           <input type="radio" name="state" value="reflect" id="_anim_radio3_f546c4fa7c034505a1f08d8d4a80e0d7"
+           <label for="_anim_radio2_68406446fe504ca3be0251e4852f4fd3">Loop</label>
+           <input type="radio" name="state" value="reflect" id="_anim_radio3_68406446fe504ca3be0251e4852f4fd3"
                   >
-           <label for="_anim_radio3_f546c4fa7c034505a1f08d8d4a80e0d7">Reflect</label>
+           <label for="_anim_radio3_68406446fe504ca3be0251e4852f4fd3">Reflect</label>
          </form>
        </div>
      </div>
@@ -359,9 +359,9 @@ Improved Greedy Sampling (GSi)
        /* Instantiate the Animation class. */
        /* The IDs given should match those used in the template above. */
        (function() {
-         var img_id = "_anim_imgf546c4fa7c034505a1f08d8d4a80e0d7";
-         var slider_id = "_anim_sliderf546c4fa7c034505a1f08d8d4a80e0d7";
-         var loop_select_id = "_anim_loop_selectf546c4fa7c034505a1f08d8d4a80e0d7";
+         var img_id = "_anim_img68406446fe504ca3be0251e4852f4fd3";
+         var slider_id = "_anim_slider68406446fe504ca3be0251e4852f4fd3";
+         var loop_select_id = "_anim_loop_select68406446fe504ca3be0251e4852f4fd3";
          var frames = new Array(2);
     
        frames[0] = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAnwAAAHeCAYAAAAB0dYuAAAAOXRFWHRTb2Z0d2FyZQBNYXRwbG90\
@@ -1381,7 +1381,7 @@ Improved Greedy Sampling (GSi)
          /* set a timeout to make sure all the above elements are created before
             the object is initialized. */
          setTimeout(function() {
-             animf546c4fa7c034505a1f08d8d4a80e0d7 = new Animation(frames, img_id, slider_id, 1000.0,
+             anim68406446fe504ca3be0251e4852f4fd3 = new Animation(frames, img_id, slider_id, 1000.0,
                                       loop_select_id);
          }, 0);
        })()
@@ -1407,7 +1407,7 @@ The implementation of this strategy is based on :footcite:t:`wu2019active`.
 
 .. rst-class:: sphx-glr-timing
 
-   **Total running time of the script:** (0 minutes 0.701 seconds)
+   **Total running time of the script:** (0 minutes 0.688 seconds)
 
 
 .. _sphx_glr_download_generated_sphinx_gallery_examples_pool_plot-GreedySamplingTarget-Improved_Greedy_Sampling_(GSi).py:

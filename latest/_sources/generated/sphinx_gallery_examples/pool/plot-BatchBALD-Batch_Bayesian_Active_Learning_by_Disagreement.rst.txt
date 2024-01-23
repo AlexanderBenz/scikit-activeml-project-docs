@@ -290,42 +290,42 @@ Batch Bayesian Active Learning by Disagreement (BatchBALD)
      </style>
 
      <div class="animation">
-       <img id="_anim_imgf70fd768c896442d8dd19a9aec11464a">
+       <img id="_anim_img3f2e38c631944d1387ead50eeb1fd462">
        <div class="anim-controls">
-         <input id="_anim_sliderf70fd768c896442d8dd19a9aec11464a" type="range" class="anim-slider"
+         <input id="_anim_slider3f2e38c631944d1387ead50eeb1fd462" type="range" class="anim-slider"
                 name="points" min="0" max="1" step="1" value="0"
-                oninput="animf70fd768c896442d8dd19a9aec11464a.set_frame(parseInt(this.value));">
+                oninput="anim3f2e38c631944d1387ead50eeb1fd462.set_frame(parseInt(this.value));">
          <div class="anim-buttons">
-           <button title="Decrease speed" aria-label="Decrease speed" onclick="animf70fd768c896442d8dd19a9aec11464a.slower()">
+           <button title="Decrease speed" aria-label="Decrease speed" onclick="anim3f2e38c631944d1387ead50eeb1fd462.slower()">
                <i class="fa fa-minus"></i></button>
-           <button title="First frame" aria-label="First frame" onclick="animf70fd768c896442d8dd19a9aec11464a.first_frame()">
+           <button title="First frame" aria-label="First frame" onclick="anim3f2e38c631944d1387ead50eeb1fd462.first_frame()">
              <i class="fa fa-fast-backward"></i></button>
-           <button title="Previous frame" aria-label="Previous frame" onclick="animf70fd768c896442d8dd19a9aec11464a.previous_frame()">
+           <button title="Previous frame" aria-label="Previous frame" onclick="anim3f2e38c631944d1387ead50eeb1fd462.previous_frame()">
                <i class="fa fa-step-backward"></i></button>
-           <button title="Play backwards" aria-label="Play backwards" onclick="animf70fd768c896442d8dd19a9aec11464a.reverse_animation()">
+           <button title="Play backwards" aria-label="Play backwards" onclick="anim3f2e38c631944d1387ead50eeb1fd462.reverse_animation()">
                <i class="fa fa-play fa-flip-horizontal"></i></button>
-           <button title="Pause" aria-label="Pause" onclick="animf70fd768c896442d8dd19a9aec11464a.pause_animation()">
+           <button title="Pause" aria-label="Pause" onclick="anim3f2e38c631944d1387ead50eeb1fd462.pause_animation()">
                <i class="fa fa-pause"></i></button>
-           <button title="Play" aria-label="Play" onclick="animf70fd768c896442d8dd19a9aec11464a.play_animation()">
+           <button title="Play" aria-label="Play" onclick="anim3f2e38c631944d1387ead50eeb1fd462.play_animation()">
                <i class="fa fa-play"></i></button>
-           <button title="Next frame" aria-label="Next frame" onclick="animf70fd768c896442d8dd19a9aec11464a.next_frame()">
+           <button title="Next frame" aria-label="Next frame" onclick="anim3f2e38c631944d1387ead50eeb1fd462.next_frame()">
                <i class="fa fa-step-forward"></i></button>
-           <button title="Last frame" aria-label="Last frame" onclick="animf70fd768c896442d8dd19a9aec11464a.last_frame()">
+           <button title="Last frame" aria-label="Last frame" onclick="anim3f2e38c631944d1387ead50eeb1fd462.last_frame()">
                <i class="fa fa-fast-forward"></i></button>
-           <button title="Increase speed" aria-label="Increase speed" onclick="animf70fd768c896442d8dd19a9aec11464a.faster()">
+           <button title="Increase speed" aria-label="Increase speed" onclick="anim3f2e38c631944d1387ead50eeb1fd462.faster()">
                <i class="fa fa-plus"></i></button>
          </div>
-         <form title="Repetition mode" aria-label="Repetition mode" action="#n" name="_anim_loop_selectf70fd768c896442d8dd19a9aec11464a"
+         <form title="Repetition mode" aria-label="Repetition mode" action="#n" name="_anim_loop_select3f2e38c631944d1387ead50eeb1fd462"
                class="anim-state">
-           <input type="radio" name="state" value="once" id="_anim_radio1_f70fd768c896442d8dd19a9aec11464a"
+           <input type="radio" name="state" value="once" id="_anim_radio1_3f2e38c631944d1387ead50eeb1fd462"
                   >
-           <label for="_anim_radio1_f70fd768c896442d8dd19a9aec11464a">Once</label>
-           <input type="radio" name="state" value="loop" id="_anim_radio2_f70fd768c896442d8dd19a9aec11464a"
+           <label for="_anim_radio1_3f2e38c631944d1387ead50eeb1fd462">Once</label>
+           <input type="radio" name="state" value="loop" id="_anim_radio2_3f2e38c631944d1387ead50eeb1fd462"
                   checked>
-           <label for="_anim_radio2_f70fd768c896442d8dd19a9aec11464a">Loop</label>
-           <input type="radio" name="state" value="reflect" id="_anim_radio3_f70fd768c896442d8dd19a9aec11464a"
+           <label for="_anim_radio2_3f2e38c631944d1387ead50eeb1fd462">Loop</label>
+           <input type="radio" name="state" value="reflect" id="_anim_radio3_3f2e38c631944d1387ead50eeb1fd462"
                   >
-           <label for="_anim_radio3_f70fd768c896442d8dd19a9aec11464a">Reflect</label>
+           <label for="_anim_radio3_3f2e38c631944d1387ead50eeb1fd462">Reflect</label>
          </form>
        </div>
      </div>
@@ -335,9 +335,9 @@ Batch Bayesian Active Learning by Disagreement (BatchBALD)
        /* Instantiate the Animation class. */
        /* The IDs given should match those used in the template above. */
        (function() {
-         var img_id = "_anim_imgf70fd768c896442d8dd19a9aec11464a";
-         var slider_id = "_anim_sliderf70fd768c896442d8dd19a9aec11464a";
-         var loop_select_id = "_anim_loop_selectf70fd768c896442d8dd19a9aec11464a";
+         var img_id = "_anim_img3f2e38c631944d1387ead50eeb1fd462";
+         var slider_id = "_anim_slider3f2e38c631944d1387ead50eeb1fd462";
+         var loop_select_id = "_anim_loop_select3f2e38c631944d1387ead50eeb1fd462";
          var frames = new Array(2);
     
        frames[0] = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAnwAAAHeCAYAAAAB0dYuAAAAOXRFWHRTb2Z0d2FyZQBNYXRwbG90\
@@ -1389,7 +1389,7 @@ Batch Bayesian Active Learning by Disagreement (BatchBALD)
          /* set a timeout to make sure all the above elements are created before
             the object is initialized. */
          setTimeout(function() {
-             animf70fd768c896442d8dd19a9aec11464a = new Animation(frames, img_id, slider_id, 1000.0,
+             anim3f2e38c631944d1387ead50eeb1fd462 = new Animation(frames, img_id, slider_id, 1000.0,
                                       loop_select_id);
          }, 0);
        })()
@@ -1415,7 +1415,7 @@ The implementation of this strategy is based on :footcite:t:`houlsby2011bayesian
 
 .. rst-class:: sphx-glr-timing
 
-   **Total running time of the script:** (0 minutes 3.273 seconds)
+   **Total running time of the script:** (0 minutes 3.206 seconds)
 
 
 .. _sphx_glr_download_generated_sphinx_gallery_examples_pool_plot-BatchBALD-Batch_Bayesian_Active_Learning_by_Disagreement.py:
