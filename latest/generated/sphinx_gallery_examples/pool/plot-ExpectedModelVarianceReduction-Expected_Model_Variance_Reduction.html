@@ -6,7 +6,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
-    <title>Expected Model Variance Reduction &#8212; scikit-activeml 0.4.2 documentation</title>
+    <title>Expected Model Variance Reduction &#8212; scikit-activeml latest documentation</title>
   
   
   
@@ -46,14 +46,14 @@
     <script>DOCUMENTATION_OPTIONS.pagename = 'generated/sphinx_gallery_examples/pool/plot-ExpectedModelVarianceReduction-Expected_Model_Variance_Reduction';</script>
     <script>
         DOCUMENTATION_OPTIONS.theme_switcher_json_url = 'https://alexanderbenz.github.io/scikit-activeml-project-docs/latest/_static/switcher.json';
-        DOCUMENTATION_OPTIONS.theme_switcher_version_match = '0.4.2';
+        DOCUMENTATION_OPTIONS.theme_switcher_version_match = 'latest';
         </script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <script src="../../../_static/filter_examples.js"></script>
     <link rel="index" title="Index" href="../../../genindex.html" />
     <link rel="search" title="Search" href="../../../search.html" />
     <link rel="next" title="Expected Model Change" href="plot-ExpectedModelChangeMaximization-Expected_Model_Change.html" />
-    <link rel="prev" title="Improved Greedy Sampling (GSi)" href="plot-GreedySamplingTarget-Improved_Greedy_Sampling_%28GSi%29.html" />
+    <link rel="prev" title="Greedy Sampling on the Target Space (GSy)" href="plot-GreedySamplingTarget-Greedy_Sampling_on_the_Target_Space_%28GSy%29.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="docsearch:language" content="en">
   </head>
@@ -116,7 +116,7 @@
     
     <div class="version-switcher__container dropdown">
     <button type="button" class="version-switcher__button btn btn-sm navbar-btn dropdown-toggle" data-toggle="dropdown">
-        0.4.2  <!-- this text may get changed later by javascript -->
+        latest  <!-- this text may get changed later by javascript -->
         <span class="caret"></span>
     </button>
     <div class="version-switcher__menu dropdown-menu list-group-flush py-0">
@@ -410,8 +410,8 @@
 <li class="toctree-l2"><a class="reference internal" href="plot-GreedyBALD-Bayesian_Active_Learning_by_Disagreement_%28BALD%29.html">Bayesian Active Learning by Disagreement</a></li>
 <li class="toctree-l2"><a class="reference internal" href="plot-UncertaintySampling-Density-weighted_Uncertainty_Sampling.html">Density-weighted Uncertainty Sampling</a></li>
 <li class="toctree-l2"><a class="reference internal" href="plot-GreedySamplingX-Greedy_Sampling_on_the_Feature_Space_%28GSx%29.html">Greedy Sampling on the Feature Space (GSx)</a></li>
-<li class="toctree-l2"><a class="reference internal" href="plot-GreedySamplingTarget-Greedy_Sampling_on_the_Target_Space_%28GSy%29.html">Greedy Sampling on the Target Space (GSy)</a></li>
 <li class="toctree-l2"><a class="reference internal" href="plot-GreedySamplingTarget-Improved_Greedy_Sampling_%28GSi%29.html">Improved Greedy Sampling (GSi)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="plot-GreedySamplingTarget-Greedy_Sampling_on_the_Target_Space_%28GSy%29.html">Greedy Sampling on the Target Space (GSy)</a></li>
 <li class="toctree-l2 current active"><a class="current reference internal" href="#">Expected Model Variance Reduction</a></li>
 <li class="toctree-l2"><a class="reference internal" href="plot-ExpectedModelChangeMaximization-Expected_Model_Change.html">Expected Model Change</a></li>
 <li class="toctree-l2"><a class="reference internal" href="plot-ExpectedModelOutputChange-Expected_Model_Output_Change.html">Expected Model Output Change</a></li>
@@ -753,42 +753,42 @@ input[type=range].anim-slider {
 </style>
 
 <div class="animation">
-  <img id="_anim_img94a52ab6bee24d249b15c96bd343d5df">
+  <img id="_anim_imga1f512bf0b6e4f5793bb0b336f2b6201">
   <div class="anim-controls">
-    <input id="_anim_slider94a52ab6bee24d249b15c96bd343d5df" type="range" class="anim-slider"
+    <input id="_anim_slidera1f512bf0b6e4f5793bb0b336f2b6201" type="range" class="anim-slider"
            name="points" min="0" max="1" step="1" value="0"
-           oninput="anim94a52ab6bee24d249b15c96bd343d5df.set_frame(parseInt(this.value));">
+           oninput="anima1f512bf0b6e4f5793bb0b336f2b6201.set_frame(parseInt(this.value));">
     <div class="anim-buttons">
-      <button title="Decrease speed" aria-label="Decrease speed" onclick="anim94a52ab6bee24d249b15c96bd343d5df.slower()">
+      <button title="Decrease speed" aria-label="Decrease speed" onclick="anima1f512bf0b6e4f5793bb0b336f2b6201.slower()">
           <i class="fa fa-minus"></i></button>
-      <button title="First frame" aria-label="First frame" onclick="anim94a52ab6bee24d249b15c96bd343d5df.first_frame()">
+      <button title="First frame" aria-label="First frame" onclick="anima1f512bf0b6e4f5793bb0b336f2b6201.first_frame()">
         <i class="fa fa-fast-backward"></i></button>
-      <button title="Previous frame" aria-label="Previous frame" onclick="anim94a52ab6bee24d249b15c96bd343d5df.previous_frame()">
+      <button title="Previous frame" aria-label="Previous frame" onclick="anima1f512bf0b6e4f5793bb0b336f2b6201.previous_frame()">
           <i class="fa fa-step-backward"></i></button>
-      <button title="Play backwards" aria-label="Play backwards" onclick="anim94a52ab6bee24d249b15c96bd343d5df.reverse_animation()">
+      <button title="Play backwards" aria-label="Play backwards" onclick="anima1f512bf0b6e4f5793bb0b336f2b6201.reverse_animation()">
           <i class="fa fa-play fa-flip-horizontal"></i></button>
-      <button title="Pause" aria-label="Pause" onclick="anim94a52ab6bee24d249b15c96bd343d5df.pause_animation()">
+      <button title="Pause" aria-label="Pause" onclick="anima1f512bf0b6e4f5793bb0b336f2b6201.pause_animation()">
           <i class="fa fa-pause"></i></button>
-      <button title="Play" aria-label="Play" onclick="anim94a52ab6bee24d249b15c96bd343d5df.play_animation()">
+      <button title="Play" aria-label="Play" onclick="anima1f512bf0b6e4f5793bb0b336f2b6201.play_animation()">
           <i class="fa fa-play"></i></button>
-      <button title="Next frame" aria-label="Next frame" onclick="anim94a52ab6bee24d249b15c96bd343d5df.next_frame()">
+      <button title="Next frame" aria-label="Next frame" onclick="anima1f512bf0b6e4f5793bb0b336f2b6201.next_frame()">
           <i class="fa fa-step-forward"></i></button>
-      <button title="Last frame" aria-label="Last frame" onclick="anim94a52ab6bee24d249b15c96bd343d5df.last_frame()">
+      <button title="Last frame" aria-label="Last frame" onclick="anima1f512bf0b6e4f5793bb0b336f2b6201.last_frame()">
           <i class="fa fa-fast-forward"></i></button>
-      <button title="Increase speed" aria-label="Increase speed" onclick="anim94a52ab6bee24d249b15c96bd343d5df.faster()">
+      <button title="Increase speed" aria-label="Increase speed" onclick="anima1f512bf0b6e4f5793bb0b336f2b6201.faster()">
           <i class="fa fa-plus"></i></button>
     </div>
-    <form title="Repetition mode" aria-label="Repetition mode" action="#n" name="_anim_loop_select94a52ab6bee24d249b15c96bd343d5df"
+    <form title="Repetition mode" aria-label="Repetition mode" action="#n" name="_anim_loop_selecta1f512bf0b6e4f5793bb0b336f2b6201"
           class="anim-state">
-      <input type="radio" name="state" value="once" id="_anim_radio1_94a52ab6bee24d249b15c96bd343d5df"
+      <input type="radio" name="state" value="once" id="_anim_radio1_a1f512bf0b6e4f5793bb0b336f2b6201"
              >
-      <label for="_anim_radio1_94a52ab6bee24d249b15c96bd343d5df">Once</label>
-      <input type="radio" name="state" value="loop" id="_anim_radio2_94a52ab6bee24d249b15c96bd343d5df"
+      <label for="_anim_radio1_a1f512bf0b6e4f5793bb0b336f2b6201">Once</label>
+      <input type="radio" name="state" value="loop" id="_anim_radio2_a1f512bf0b6e4f5793bb0b336f2b6201"
              checked>
-      <label for="_anim_radio2_94a52ab6bee24d249b15c96bd343d5df">Loop</label>
-      <input type="radio" name="state" value="reflect" id="_anim_radio3_94a52ab6bee24d249b15c96bd343d5df"
+      <label for="_anim_radio2_a1f512bf0b6e4f5793bb0b336f2b6201">Loop</label>
+      <input type="radio" name="state" value="reflect" id="_anim_radio3_a1f512bf0b6e4f5793bb0b336f2b6201"
              >
-      <label for="_anim_radio3_94a52ab6bee24d249b15c96bd343d5df">Reflect</label>
+      <label for="_anim_radio3_a1f512bf0b6e4f5793bb0b336f2b6201">Reflect</label>
     </form>
   </div>
 </div>
@@ -798,9 +798,9 @@ input[type=range].anim-slider {
   /* Instantiate the Animation class. */
   /* The IDs given should match those used in the template above. */
   (function() {
-    var img_id = "_anim_img94a52ab6bee24d249b15c96bd343d5df";
-    var slider_id = "_anim_slider94a52ab6bee24d249b15c96bd343d5df";
-    var loop_select_id = "_anim_loop_select94a52ab6bee24d249b15c96bd343d5df";
+    var img_id = "_anim_imga1f512bf0b6e4f5793bb0b336f2b6201";
+    var slider_id = "_anim_slidera1f512bf0b6e4f5793bb0b336f2b6201";
+    var loop_select_id = "_anim_loop_selecta1f512bf0b6e4f5793bb0b336f2b6201";
     var frames = new Array(2);
 
   frames[0] = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAnwAAAHeCAYAAAAB0dYuAAAAOXRFWHRTb2Z0d2FyZQBNYXRwbG90\
@@ -1740,7 +1740,7 @@ kcT9P8X7cIOWhmbaAAAAAElFTkSuQmCC\
     /* set a timeout to make sure all the above elements are created before
        the object is initialized. */
     setTimeout(function() {
-        anim94a52ab6bee24d249b15c96bd343d5df = new Animation(frames, img_id, slider_id, 1000.0,
+        anima1f512bf0b6e4f5793bb0b336f2b6201 = new Animation(frames, img_id, slider_id, 1000.0,
                                  loop_select_id);
     }, 0);
   })()
@@ -1755,7 +1755,7 @@ kcT9P8X7cIOWhmbaAAAAAElFTkSuQmCC\
 </dd>
 </dl>
 </div>
-<p class="sphx-glr-timing"><strong>Total running time of the script:</strong> (0 minutes 0.759 seconds)</p>
+<p class="sphx-glr-timing"><strong>Total running time of the script:</strong> (0 minutes 0.746 seconds)</p>
 <div class="sphx-glr-footer sphx-glr-footer-example docutils container" id="sphx-glr-download-generated-sphinx-gallery-examples-pool-plot-expectedmodelvariancereduction-expected-model-variance-reduction-py">
 <div class="sphx-glr-download sphx-glr-download-jupyter docutils container">
 <p><a class="reference download internal" download="" href="../../../_downloads/87edf44f644ea1eb8e897bc4b6d83dc6/plot-ExpectedModelVarianceReduction-Expected_Model_Variance_Reduction.ipynb"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">Jupyter</span> <span class="pre">notebook:</span> <span class="pre">plot-ExpectedModelVarianceReduction-Expected_Model_Variance_Reduction.ipynb</span></code></a></p>
@@ -1775,11 +1775,11 @@ kcT9P8X7cIOWhmbaAAAAAElFTkSuQmCC\
             <footer class="bd-footer-article">
                 <!-- Previous / next buttons -->
 <div class='prev-next-area'>
-  <a class='left-prev' id="prev-link" href="plot-GreedySamplingTarget-Improved_Greedy_Sampling_%28GSi%29.html" title="previous page">
+  <a class='left-prev' id="prev-link" href="plot-GreedySamplingTarget-Greedy_Sampling_on_the_Target_Space_%28GSy%29.html" title="previous page">
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
           <p class="prev-next-subtitle">previous</p>
-          <p class="prev-next-title">Improved Greedy Sampling (GSi)</p>
+          <p class="prev-next-title">Greedy Sampling on the Target Space (GSy)</p>
       </div>
   </a>
   <a class='right-next' id="next-link" href="plot-ExpectedModelChangeMaximization-Expected_Model_Change.html" title="next page">
