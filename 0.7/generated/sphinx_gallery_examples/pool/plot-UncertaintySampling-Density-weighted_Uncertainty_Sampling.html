@@ -6,7 +6,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
-    <title>Density-weighted Uncertainty Sampling &#8212; scikit-activeml 0.7.0 documentation</title>
+    <title>Density-weighted Uncertainty Sampling &#8212; scikit-activeml 0.7.1 documentation</title>
   
   
   
@@ -46,7 +46,7 @@
     <script>DOCUMENTATION_OPTIONS.pagename = 'generated/sphinx_gallery_examples/pool/plot-UncertaintySampling-Density-weighted_Uncertainty_Sampling';</script>
     <script>
         DOCUMENTATION_OPTIONS.theme_switcher_json_url = 'https://alexanderbenz.github.io/scikit-activeml-project-docs/latest/_static/switcher.json';
-        DOCUMENTATION_OPTIONS.theme_switcher_version_match = '0.7.0';
+        DOCUMENTATION_OPTIONS.theme_switcher_version_match = '0.7.1';
         </script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <script src="../../../_static/filter_examples.js"></script>
@@ -116,7 +116,7 @@
     
     <div class="version-switcher__container dropdown">
     <button type="button" class="version-switcher__button btn btn-sm navbar-btn dropdown-toggle" data-toggle="dropdown">
-        0.7.0  <!-- this text may get changed later by javascript -->
+        0.7.1  <!-- this text may get changed later by javascript -->
         <span class="caret"></span>
     </button>
     <div class="version-switcher__menu dropdown-menu list-group-flush py-0">
@@ -729,42 +729,42 @@ input[type=range].anim-slider {
 </style>
 
 <div class="animation">
-  <img id="_anim_imgf33c0d00825c4d3fb58f9d7cd41950bd">
+  <img id="_anim_img3aa274ee845944be8170f89aa9982763">
   <div class="anim-controls">
-    <input id="_anim_sliderf33c0d00825c4d3fb58f9d7cd41950bd" type="range" class="anim-slider"
+    <input id="_anim_slider3aa274ee845944be8170f89aa9982763" type="range" class="anim-slider"
            name="points" min="0" max="1" step="1" value="0"
-           oninput="animf33c0d00825c4d3fb58f9d7cd41950bd.set_frame(parseInt(this.value));">
+           oninput="anim3aa274ee845944be8170f89aa9982763.set_frame(parseInt(this.value));">
     <div class="anim-buttons">
-      <button title="Decrease speed" aria-label="Decrease speed" onclick="animf33c0d00825c4d3fb58f9d7cd41950bd.slower()">
+      <button title="Decrease speed" aria-label="Decrease speed" onclick="anim3aa274ee845944be8170f89aa9982763.slower()">
           <i class="fa fa-minus"></i></button>
-      <button title="First frame" aria-label="First frame" onclick="animf33c0d00825c4d3fb58f9d7cd41950bd.first_frame()">
+      <button title="First frame" aria-label="First frame" onclick="anim3aa274ee845944be8170f89aa9982763.first_frame()">
         <i class="fa fa-fast-backward"></i></button>
-      <button title="Previous frame" aria-label="Previous frame" onclick="animf33c0d00825c4d3fb58f9d7cd41950bd.previous_frame()">
+      <button title="Previous frame" aria-label="Previous frame" onclick="anim3aa274ee845944be8170f89aa9982763.previous_frame()">
           <i class="fa fa-step-backward"></i></button>
-      <button title="Play backwards" aria-label="Play backwards" onclick="animf33c0d00825c4d3fb58f9d7cd41950bd.reverse_animation()">
+      <button title="Play backwards" aria-label="Play backwards" onclick="anim3aa274ee845944be8170f89aa9982763.reverse_animation()">
           <i class="fa fa-play fa-flip-horizontal"></i></button>
-      <button title="Pause" aria-label="Pause" onclick="animf33c0d00825c4d3fb58f9d7cd41950bd.pause_animation()">
+      <button title="Pause" aria-label="Pause" onclick="anim3aa274ee845944be8170f89aa9982763.pause_animation()">
           <i class="fa fa-pause"></i></button>
-      <button title="Play" aria-label="Play" onclick="animf33c0d00825c4d3fb58f9d7cd41950bd.play_animation()">
+      <button title="Play" aria-label="Play" onclick="anim3aa274ee845944be8170f89aa9982763.play_animation()">
           <i class="fa fa-play"></i></button>
-      <button title="Next frame" aria-label="Next frame" onclick="animf33c0d00825c4d3fb58f9d7cd41950bd.next_frame()">
+      <button title="Next frame" aria-label="Next frame" onclick="anim3aa274ee845944be8170f89aa9982763.next_frame()">
           <i class="fa fa-step-forward"></i></button>
-      <button title="Last frame" aria-label="Last frame" onclick="animf33c0d00825c4d3fb58f9d7cd41950bd.last_frame()">
+      <button title="Last frame" aria-label="Last frame" onclick="anim3aa274ee845944be8170f89aa9982763.last_frame()">
           <i class="fa fa-fast-forward"></i></button>
-      <button title="Increase speed" aria-label="Increase speed" onclick="animf33c0d00825c4d3fb58f9d7cd41950bd.faster()">
+      <button title="Increase speed" aria-label="Increase speed" onclick="anim3aa274ee845944be8170f89aa9982763.faster()">
           <i class="fa fa-plus"></i></button>
     </div>
-    <form title="Repetition mode" aria-label="Repetition mode" action="#n" name="_anim_loop_selectf33c0d00825c4d3fb58f9d7cd41950bd"
+    <form title="Repetition mode" aria-label="Repetition mode" action="#n" name="_anim_loop_select3aa274ee845944be8170f89aa9982763"
           class="anim-state">
-      <input type="radio" name="state" value="once" id="_anim_radio1_f33c0d00825c4d3fb58f9d7cd41950bd"
+      <input type="radio" name="state" value="once" id="_anim_radio1_3aa274ee845944be8170f89aa9982763"
              >
-      <label for="_anim_radio1_f33c0d00825c4d3fb58f9d7cd41950bd">Once</label>
-      <input type="radio" name="state" value="loop" id="_anim_radio2_f33c0d00825c4d3fb58f9d7cd41950bd"
+      <label for="_anim_radio1_3aa274ee845944be8170f89aa9982763">Once</label>
+      <input type="radio" name="state" value="loop" id="_anim_radio2_3aa274ee845944be8170f89aa9982763"
              checked>
-      <label for="_anim_radio2_f33c0d00825c4d3fb58f9d7cd41950bd">Loop</label>
-      <input type="radio" name="state" value="reflect" id="_anim_radio3_f33c0d00825c4d3fb58f9d7cd41950bd"
+      <label for="_anim_radio2_3aa274ee845944be8170f89aa9982763">Loop</label>
+      <input type="radio" name="state" value="reflect" id="_anim_radio3_3aa274ee845944be8170f89aa9982763"
              >
-      <label for="_anim_radio3_f33c0d00825c4d3fb58f9d7cd41950bd">Reflect</label>
+      <label for="_anim_radio3_3aa274ee845944be8170f89aa9982763">Reflect</label>
     </form>
   </div>
 </div>
@@ -774,9 +774,9 @@ input[type=range].anim-slider {
   /* Instantiate the Animation class. */
   /* The IDs given should match those used in the template above. */
   (function() {
-    var img_id = "_anim_imgf33c0d00825c4d3fb58f9d7cd41950bd";
-    var slider_id = "_anim_sliderf33c0d00825c4d3fb58f9d7cd41950bd";
-    var loop_select_id = "_anim_loop_selectf33c0d00825c4d3fb58f9d7cd41950bd";
+    var img_id = "_anim_img3aa274ee845944be8170f89aa9982763";
+    var slider_id = "_anim_slider3aa274ee845944be8170f89aa9982763";
+    var loop_select_id = "_anim_loop_select3aa274ee845944be8170f89aa9982763";
     var frames = new Array(2);
 
   frames[0] = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAnwAAAHeCAYAAAAB0dYuAAAAOXRFWHRTb2Z0d2FyZQBNYXRwbG90\
@@ -1352,7 +1352,7 @@ AIDhCHwAAACGI/ABAAAY7v8BwPteofvxeGEAAAAASUVORK5CYII=\
     /* set a timeout to make sure all the above elements are created before
        the object is initialized. */
     setTimeout(function() {
-        animf33c0d00825c4d3fb58f9d7cd41950bd = new Animation(frames, img_id, slider_id, 1000.0,
+        anim3aa274ee845944be8170f89aa9982763 = new Animation(frames, img_id, slider_id, 1000.0,
                                  loop_select_id);
     }, 0);
   })()
@@ -1370,7 +1370,7 @@ AIDhCHwAAACGI/ABAAAY7v8BwPteofvxeGEAAAAASUVORK5CYII=\
 </dd>
 </dl>
 </div>
-<p class="sphx-glr-timing"><strong>Total running time of the script:</strong> (0 minutes 0.435 seconds)</p>
+<p class="sphx-glr-timing"><strong>Total running time of the script:</strong> (0 minutes 0.437 seconds)</p>
 <div class="sphx-glr-footer sphx-glr-footer-example docutils container" id="sphx-glr-download-generated-sphinx-gallery-examples-pool-plot-uncertaintysampling-density-weighted-uncertainty-sampling-py">
 <div class="sphx-glr-download sphx-glr-download-jupyter docutils container">
 <p><a class="reference download internal" download="" href="../../../_downloads/d94febccd875ca2ab5428a881000c2e7/plot-UncertaintySampling-Density-weighted_Uncertainty_Sampling.ipynb"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">Jupyter</span> <span class="pre">notebook:</span> <span class="pre">plot-UncertaintySampling-Density-weighted_Uncertainty_Sampling.ipynb</span></code></a></p>
